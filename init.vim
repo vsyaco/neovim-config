@@ -20,7 +20,7 @@ set showmatch
 set termguicolors
 set splitright splitbelow
 set list lcs=tab:\¦\      "(here is a space)
-set cmdheight=0
+set cmdheight=2
 
 let &t_SI = "\e[6 q"      " Make cursor a line in insert
 let &t_EI = "\e[2 q"      " Make cursor a line in insert
@@ -77,6 +77,9 @@ nnoremap <C-p> :Files<cr>
 " Use Ctrl-h to open the fuzzy History
 nnoremap <C-h> :History<cr> 
 
+" Rg
+nnoremap <C-d> :Rg<cr>
+
 " Load CoC Settings
 runtime ./coc.vim
 
@@ -101,9 +104,25 @@ if (has("nvim"))
   let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 endif
 
-"For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
-"Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
-" < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
-if (has("termguicolors"))
-  set termguicolors
-endif
+
+" Some options of diplaying the preview of fzf search from https://github.com/junegunn/fzf.vim/issues/1051. 
+" Choose only one of them. And remove slash from \"rg part of line
+
+" 1
+"command! -bang -nargs=* Rg
+"  \ call fzf#vim#grep(
+"  \   \"rg --column --line-number --no-heading --color=always --smart-case -- ".shellescape(<q-args>), 1,
+"  \   fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'up', 'ctrl-/', <bang>0))
+
+" 2
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   "rg --column --line-number --no-heading --color=always --smart-case -- ".shellescape(<q-args>), 1,
+  \   fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'up', 'ctrl-/'), 1)
+
+" 3
+"command! -bang -nargs=* Rg
+"  \ call fzf#vim#grep(
+"  \   \"rg --column --line-number --no-heading --color=always --smart-case -- ".shellescape(<q-args>), 1,
+"  \   fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'right:hidden', 'ctrl-/'), <bang>0)
+
