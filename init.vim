@@ -1,3 +1,4 @@
+
 let mapleader = ","
 
 set nocompatible
@@ -7,12 +8,13 @@ set ignorecase            " Search ingnoring case
 set smartcase             " Do not ignore case if the search patter has uppercase
 set noerrorbells          " I hate bells
 set belloff=esc
+
 set tabstop=4             " Tab size of 4 spaces
 set softtabstop=4         " On insert use 4 spaces for tab
 set shiftwidth=4
 set expandtab             " Use apropiate number of spaces
+
 set nowrap                " Wrapping sucks (except on markdown)
-autocmd BufRead,BufNewFile *.md,*.txt setlocal wrap " DO wrap on markdown files
 set noswapfile            " Do not leve any backup files
 set mouse=a               " Enable mouse on all modes
 set clipboard=unnamed,unnamedplus     " Use the OS clipboard
@@ -20,7 +22,13 @@ set showmatch
 set termguicolors
 set splitright splitbelow
 set list lcs=tab:\¦\      "(here is a space)
-set cmdheight=2
+
+" Updated Settings
+" set cmdheight=2
+syntax on               " Syntax highlighting
+
+" so many colors
+set t_Co=256
 
 let &t_SI = "\e[6 q"      " Make cursor a line in insert
 let &t_EI = "\e[2 q"      " Make cursor a line in insert
@@ -47,24 +55,11 @@ augroup vimrc-remember-cursor-position
   autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 augroup END
 
-" Install vim-plug for vim and neovim
-if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
+autocmd BufRead,BufNewFile *.md,*.txt setlocal wrap " DO wrap on markdown files
 
-" Plugins
-call plug#begin('~/.vim/plugged')
-  Plug 'tpope/vim-sensible'
-  Plug 'drewtempelmeyer/palenight.vim'
-  Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' } " File navigator
-  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }     " Install fuzzy finder binary
-  Plug 'junegunn/fzf.vim'               " Enable fuzzy finder in Vim
-  Plug 'editorconfig/editorconfig-vim'  " Tab/Space trough projects
-  Plug 'neoclide/coc.nvim', {'branch': 'release'} " Intelisense
-  Plug 'sheerun/vim-polyglot' " Better syntax highlighting
-  Plug 'mg979/vim-visual-multi', {'branch': 'master'} " Multiple cursors
-call plug#end()
+
+source $HOME/.config/nvim/plugins.vim
+source $HOME/.config/nvim/coc.vim
 
 " Setting theme
 set background=dark
@@ -81,7 +76,6 @@ nnoremap <C-h> :History<cr>
 nnoremap <C-d> :Rg<cr>
 
 " Load CoC Settings
-runtime ./coc.vim
 
 " Installing additional CoC extenstions
 let g:coc_global_extensions = [
@@ -94,8 +88,9 @@ let g:coc_global_extensions = [
 	\ 'coc-diagnostic'
     \]
 
-" Some fzf excludes
+let g:airline_powerline_fonts = 1
 
+" Some fzf excludes
 let $FZF_DEFAULT_COMMAND='find . \( -name vendor -o -name node_modules -o -name .git \) -prune -o -print'
 
 " Enable true colors
