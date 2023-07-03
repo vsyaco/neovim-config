@@ -48,7 +48,7 @@ return require('packer').startup(function(use)
   use 'tpope/vim-fugitive'
   use 'tpope/vim-sensible'
   use 'mhinz/vim-signify'
-  use 'folke/tokyonight.nvim'
+  use 'drewtempelmeyer/palenight.vim'
   use {
     'junegunn/fzf',
     run = function()
@@ -100,12 +100,15 @@ return require('packer').startup(function(use)
     cmd = "Copilot",
     event = "InsertEnter",
     config = function()
-      require("copilot").setup({})
+      require("copilot").setup({
+        suggestion = { enabled = false },
+        panel = { enabled = false },
+      })
     end,
   }
   use {
     "zbirenbaum/copilot-cmp",
-    after = { "copilot.lua" },
+    after = { "copilot.lua", "nvim-cmp" },
     config = function ()
       require("copilot_cmp").setup()
     end
