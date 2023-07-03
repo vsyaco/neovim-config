@@ -63,19 +63,33 @@ source $HOME/.config/nvim/coc.vim
 
 " Setting theme
 set background=dark
-colorscheme palenight
+colorscheme palenight "Custom theme from plugins.vim
 
-" Use Ctrl-k Ctrl-k to open a sidebar with the list of files
+" Use Ctrl-1 to open a sidebar with the list of files
 map <C-1> :NERDTreeToggle<cr>
 " Use Ctrl-P to open the fuzzy file opener
 nnoremap <C-p> :Files<cr>
 " Use Ctrl-h to open the fuzzy History
-nnoremap <C-h> :History<cr> 
+nnoremap <C-h> :History<cr>
+" Use Ctrl+b to open the fuzzy buffers
+nnoremap <C-b> :Buffers<cr>
+
+" Use Cmd + ] to open the next buffer
+nnoremap <C-]> :bnext<cr>
+" Use shift + Ctrl + [ to open the previous buffer
+nnoremap <C-[> :bprevious<cr>
+" Close the current buffer
+nnoremap <C-w> :bd<cr>
+
+" Dont switch buffers with Esc in normal mode
+nnoremap <Esc> <nop>
 
 " Rg
 nnoremap <C-d> :Rg<cr>
 
-" Load CoC Settings
+" Use C-s as CogList outline 
+" (Outline current functions and symbols of current file)
+nnoremap <C-s> :CocList outline<cr>
 
 " Installing additional CoC extenstions
 let g:coc_global_extensions = [
@@ -89,6 +103,11 @@ let g:coc_global_extensions = [
     \]
 
 let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#whitespace#enabled = 0
+
+" Show current branch in airline
+let g:airline#extensions#branch#enabled = 1
 
 " Some fzf excludes
 let $FZF_DEFAULT_COMMAND='find . \( -name vendor -o -name node_modules -o -name .git \) -prune -o -print'
