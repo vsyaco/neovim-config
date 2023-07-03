@@ -22,9 +22,10 @@ vim.opt.list = true
 vim.opt.listchars = {tab = '¦ '}
 vim.opt.syntax = 'on'
 
-vim.cmd[[colorscheme tokyonight]]
+vim.cmd[[colorscheme palenight]]
 vim.opt.background = 'dark'
 
 vim.env.FZF_DEFAULT_COMMAND = 'find . \\( -name vendor -o -name node_modules -o -name .git \\) -prune -o -print'
 
+vim.g["airline#extensions#tabline#enabled"] = 1
 
