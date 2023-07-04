@@ -29,3 +29,5 @@ vim.env.FZF_DEFAULT_COMMAND = 'find . \\( -name vendor -o -name node_modules -o 
 
 vim.g["airline#extensions#tabline#enabled"] = 1
 
+-- Disable sounds
+vim.cmd[[au GUIEnter * silent! !osascript -e 'set volume output muted true']]
