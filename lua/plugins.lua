@@ -43,32 +43,15 @@ vim.cmd [[packadd packer.nvim]]
 return require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
+
   use 'vim-airline/vim-airline'
-  use 'vim-airline/vim-airline-themes' 
+  use 'vim-airline/vim-airline-themes'
   use 'tpope/vim-fugitive'
-  use 'tpope/vim-sensible'
-  use 'mhinz/vim-signify'
   use 'drewtempelmeyer/palenight.vim'
   use {
-    'junegunn/fzf',
-    run = function()
-      vim.fn['fzf#install']()
-    end
+      'nvim-telescope/telescope.nvim', tag = '0.1.2',
+      requires = { {'nvim-lua/plenary.nvim'} }
   }
-  use 'junegunn/fzf.vim'
-  use({
-    -- Configure LSP client and Use an LSP server installer.
-    "neovim/nvim-lspconfig",
-    requires = {
-      "williamboman/nvim-lsp-installer", -- Installs servers within neovim using :LspInstallInfo and using "i" on preffered server
-      "onsails/lspkind-nvim",            -- adds vscode-like pictograms to neovim built-in lsp
-    },
-    config = function()
-      require("config.lsp")
-    end,
-  })
-  use 'hrsh7th/nvim-compe'
-  use 'sheerun/vim-polyglot'
   use {
     'mg979/vim-visual-multi',
     branch = 'master'
@@ -83,34 +66,62 @@ return require('packer').startup(function(use)
       require("config.nvim-treesitter")
     end,
   }
-  use({ -- CMP completion engine to show us available options
-    "hrsh7th/nvim-cmp",
+  use {
+    'VonHeikemen/lsp-zero.nvim',
+    branch = 'v2.x',
     requires = {
-      "onsails/lspkind-nvim",     -- Icons on the popups
-      "hrsh7th/cmp-nvim-lsp",     -- LSP source for nvim-cmp
-      "saadparwaiz1/cmp_luasnip", -- Snippets source
-      "L3MON4D3/LuaSnip",         -- Snippet engine
+      -- LSP Support
+      {'neovim/nvim-lspconfig'},             -- Required
+      {                                      -- Optional
+        'williamboman/mason.nvim',
+        run = function()
+          pcall(vim.cmd, 'MasonUpdate')
+        end,
+      },
+      {'williamboman/mason-lspconfig.nvim'}, -- Optional
+      -- Autocompletion
+      {'hrsh7th/nvim-cmp'},     -- Required
+      {'hrsh7th/cmp-nvim-lsp'}, -- Required
+      {'L3MON4D3/LuaSnip'},     -- Required
+    }
+  }
+  -- Install the plugins zbirenbaum/copilot.lua
+  use {
+    'zbirenbaum/copilot.lua',
+    requires = {
+      'hrsh7th/nvim-cmp',
+      'hrsh7th/cmp-nvim-lsp',
+      'L3MON4D3/LuaSnip',
     },
     config = function()
-      require("config.cmp")
-    end,
-  })
-  use {
-    "zbirenbaum/copilot.lua",
-    cmd = "Copilot",
-    event = "InsertEnter",
-    config = function()
-      require("copilot").setup({
-        suggestion = { enabled = false },
-        panel = { enabled = false },
+      require('copilot').setup({
+        suggestion = {enabled = false},
+        panel = {enabled = false},
       })
+      require('copilot_cmp').setup()
     end,
   }
   use {
-    "zbirenbaum/copilot-cmp",
-    after = { "copilot.lua", "nvim-cmp" },
-    config = function ()
-      require("copilot_cmp").setup()
-    end
+    'zbirenbaum/copilot-cmp',
+    requires = {
+      'hrsh7th/nvim-cmp',
+      'hrsh7th/cmp-nvim-lsp',
+      'L3MON4D3/LuaSnip',
+    },
+    config = function()
+      local cmp = require('cmp')
+      cmp.setup({
+        sources = {
+            {name = 'copilot'},
+            {name = 'nvim_lsp'},
+        },
+        mapping = {
+          ['<CR>'] = cmp.mapping.confirm({
+              behavior = cmp.ConfirmBehavior.Replace,
+              select = false
+          }),
+        },
+      })
+    end,
   }
 end)
