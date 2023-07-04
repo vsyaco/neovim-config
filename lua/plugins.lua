@@ -80,48 +80,17 @@ return require('packer').startup(function(use)
       },
       {'williamboman/mason-lspconfig.nvim'}, -- Optional
       -- Autocompletion
-      {'hrsh7th/nvim-cmp'},     -- Required
-      {'hrsh7th/cmp-nvim-lsp'}, -- Required
-      {'L3MON4D3/LuaSnip'},     -- Required
+      {'hrsh7th/nvim-cmp'},
+      {'hrsh7th/cmp-buffer'},
+      {'hrsh7th/cmp-path'},
+      {'saadparwaiz1/cmp_luasnip'},
+      {'hrsh7th/cmp-nvim-lsp'},
+      {'hrsh7th/cmp-nvim-lua'},
+
+      -- Snippets
+      {'L3MON4D3/LuaSnip'},
+      {'rafamadriz/friendly-snippets'},
     }
   }
-  -- Install the plugins zbirenbaum/copilot.lua
-  use {
-    'zbirenbaum/copilot.lua',
-    requires = {
-      'hrsh7th/nvim-cmp',
-      'hrsh7th/cmp-nvim-lsp',
-      'L3MON4D3/LuaSnip',
-    },
-    config = function()
-      require('copilot').setup({
-        suggestion = {enabled = false},
-        panel = {enabled = false},
-      })
-      require('copilot_cmp').setup()
-    end,
-  }
-  use {
-    'zbirenbaum/copilot-cmp',
-    requires = {
-      'hrsh7th/nvim-cmp',
-      'hrsh7th/cmp-nvim-lsp',
-      'L3MON4D3/LuaSnip',
-    },
-    config = function()
-      local cmp = require('cmp')
-      cmp.setup({
-        sources = {
-            {name = 'copilot'},
-            {name = 'nvim_lsp'},
-        },
-        mapping = {
-          ['<CR>'] = cmp.mapping.confirm({
-              behavior = cmp.ConfirmBehavior.Replace,
-              select = false
-          }),
-        },
-      })
-    end,
-  }
+  use("github/copilot.vim")
 end)
