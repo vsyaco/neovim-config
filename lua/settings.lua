@@ -25,7 +25,9 @@ vim.opt.splitbelow = true
 vim.opt.list = true
 vim.opt.listchars = {tab = '¦ '}
 vim.opt.syntax = 'on'
-
+vim.opt.updatetime = 50
+vim.opt.swapfile = false
+vim.opt.backup = false
 vim.cmd[[colorscheme palenight]]
 vim.opt.background = 'dark'
 
