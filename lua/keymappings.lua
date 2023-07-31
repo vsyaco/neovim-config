@@ -10,7 +10,7 @@ vim.api.nvim_set_keymap('v', 'K', ":m '<-2<CR>gv=gv", {noremap = true})
 vim.cmd[[au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g`\"" | endif]]
 
 -- Use Ctrl-1 to open a list of files
-vim.api.nvim_set_keymap('n', '<C-1>', ':Ex<CR>', {noremap = true})
+-- vim.api.nvim_set_keymap('n', '<C-1>', ':Ex<CR>', {noremap = true})
 
 -- Use Ctrl + ] to open the next buffer
 vim.api.nvim_set_keymap('n', '<C-]>', ':bnext<CR>', {noremap = true})
@@ -21,7 +21,7 @@ vim.api.nvim_set_keymap('n', '<C-[>', ':bprevious<CR>', {noremap = true})
 -- Use Ctrl + c to open the buffer list from telescope.lua
 
 -- Close the current buffer
-vim.api.nvim_set_keymap('n', '<C-w>', ':bd<CR>', {noremap = true})
+-- vim.api.nvim_set_keymap('n', '<C-w>', ':bd<CR>', {noremap = true})
 
 -- Find all in files
 vim.api.nvim_set_keymap('n', '<C-f>', ':Rg<CR>', {noremap = true})

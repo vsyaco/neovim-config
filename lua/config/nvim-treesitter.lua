@@ -4,7 +4,7 @@ require("nvim-treesitter.configs").setup({
     sync_installed = true,
     highlight = {
      enable = true, -- This is a MUST
-     additional_vim_regex_highlighting = { "php" },
+     additional_vim_regex_highlighting = { "php", "html", "css", "javascript", "typescript", "vue", "lua", "go" },
     },
     indent = {
      enable = false, -- Really breaks stuff if true
@@ -19,10 +19,10 @@ require("nvim-treesitter.configs").setup({
      },
     },
    })
-   
-   -- Enable folds (zc and zo) on functions and classes but not by default
-   vim.cmd([[
-     set nofoldenable
-     set foldmethod=expr
-     set foldexpr=nvim_treesitter#foldexpr()
-   ]])
+
+-- Enable folds (zc and zo) on functions and classes but not by default
+vim.cmd([[
+    set nofoldenable
+    set foldmethod=expr
+    set foldexpr=nvim_treesitter#foldexpr()
+]])
