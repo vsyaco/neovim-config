@@ -1,3 +1,7 @@
+-- Disable netrw to use nvim-tree instead
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 vim.g.mapleader = " "
 
 vim.opt.relativenumber = true
@@ -33,7 +37,7 @@ vim.opt.background = 'dark'
 
 vim.env.FZF_DEFAULT_COMMAND = 'find . \\( -name vendor -o -name node_modules -o -name .git \\) -prune -o -print'
 
-vim.g["airline#extensions#tabline#enabled"] = 1
+vim.g["airline#extensions#tabline#enabled"] = 0 
 
 -- Disable sounds
 vim.cmd[[au GUIEnter * silent! !osascript -e 'set volume output muted true']]

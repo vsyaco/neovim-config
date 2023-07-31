@@ -94,4 +94,11 @@ return require('packer').startup(function(use)
     }
   }
   use("github/copilot.vim")
+  -- Instal nvim-tree and set Ctrl-1 to toggle it
+  use {
+    'nvim-tree/nvim-tree.lua',
+    config = function()
+      require("config.nvim-tree")
+    end,
+    }
 end)
