@@ -6,6 +6,7 @@ vim.g.mapleader = " "
 
 vim.opt.relativenumber = true
 
+
 vim.api.nvim_set_keymap('', ',', '', {})
 vim.opt.compatible = false
 vim.opt.number = true
@@ -13,7 +14,7 @@ vim.opt.hlsearch = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.errorbells = false
-vim.opt.belloff = 'esc'
+vim.opt.belloff = 'all'
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
@@ -27,17 +28,14 @@ vim.opt.termguicolors = true
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 vim.opt.list = true
-vim.opt.listchars = {tab = '¦ '}
+vim.opt.listchars = { tab = '¦ ' }
 vim.opt.syntax = 'on'
 vim.opt.updatetime = 50
 vim.opt.swapfile = false
 vim.opt.backup = false
-vim.cmd[[colorscheme palenight]]
+vim.cmd [[colorscheme palenight]]
 vim.opt.background = 'dark'
 
 vim.env.FZF_DEFAULT_COMMAND = 'find . \\( -name vendor -o -name node_modules -o -name .git \\) -prune -o -print'
 
-vim.g["airline#extensions#tabline#enabled"] = 0 
-
--- Disable sounds
-vim.cmd[[au GUIEnter * silent! !osascript -e 'set volume output muted true']]
+vim.g["airline#extensions#tabline#enabled"] = 0
