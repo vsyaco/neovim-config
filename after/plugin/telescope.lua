@@ -11,7 +11,7 @@ vim.keymap.set('n', '<C-p>', builtin.git_files, {})
 vim.keymap.set('n', 'vh', builtin.help_tags, {})
 
 -- Show symbols in the current document
-vim.keymap.set('n', '<C-e>', builtin.lsp_document_symbols, {})
+vim.keymap.set('n', '<leader>ls', builtin.lsp_document_symbols, {})
 
 -- Show references to the current symbol
 vim.keymap.set('n', '<leader>gr', builtin.lsp_references, {})
@@ -31,6 +31,9 @@ vim.keymap.set('n', '<leader>f', builtin.live_grep, {})
 -- List in telescope all git files that changed
 vim.keymap.set('n', '<leader>gs', builtin.git_status, {})
 
+-- List diagnostics to current buffer
+vim.keymap.set('n', '<leader>ld', builtin.diagnostics, {})
+
 require('telescope').setup({
     defaults = {
         layout_strategy = "bottom_pane",
@@ -40,6 +43,17 @@ require('telescope').setup({
             prompt_position = "bottom",
         },
         border = false,
+        --center = {
+        --height = 0.4,
+        --preview_cutoff = 40,
+        --prompt_position = "bottom",
+        --width = 0.5
+        --},
+        -- Pickers
+    },
+    pickers = {
+        find_files = {
+            hidden = true,
+        },
     },
 })
-
