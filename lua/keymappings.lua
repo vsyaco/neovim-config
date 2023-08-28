@@ -56,6 +56,8 @@ vim.keymap.set("v", "<leader>lc", vim.lsp.buf.code_action, { remap = false })
 
 -- Close buffer with leader + w
 vim.keymap.set("n", "<leader>w", ":bd<CR>", { noremap = true })
+-- Close all buffers except current one
+vim.keymap.set("n", "<leader>ow", ":%bd|e#|bd#<CR>", { noremap = true })
 
 vim.api.nvim_set_keymap('n', '<leader>]d', '<cmd>lua vim.diagnostic.goto_next()<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>]d', '<cmd>lua vim.diagnostic.goto_next()<CR>', { noremap = true, silent = true })
