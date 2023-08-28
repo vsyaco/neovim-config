@@ -33,7 +33,7 @@ vim.opt.syntax = 'on'
 vim.opt.updatetime = 50
 vim.opt.swapfile = false
 vim.opt.backup = false
-vim.cmd [[colorscheme palenight]]
+vim.cmd [[colorscheme rose-pine-moon]]
 vim.opt.background = 'dark'
 
 vim.env.FZF_DEFAULT_COMMAND = 'find . \\( -name vendor -o -name node_modules -o -name .git \\) -prune -o -print'
