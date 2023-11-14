@@ -36,13 +36,13 @@ vim.keymap.set('n', '<leader>ld', builtin.diagnostics, {})
 
 require('telescope').setup({
     defaults = {
-        layout_strategy = "bottom_pane",
-        layout_config = {
-            width = 0.99,
-            height = 0.5,
-            prompt_position = "bottom",
-        },
-        border = false,
+--        layout_strategy = "bottom_pane",
+--        layout_config = {
+--            width = 0.99,
+--            height = 0.5,
+--            prompt_position = "bottom",
+--        },
+--        border = false,
         --center = {
         --height = 0.4,
         --preview_cutoff = 40,
@@ -55,6 +55,17 @@ require('telescope').setup({
         find_files = {
             hidden = true,
             no_ignore = true,
+        },
+        git_files = {
+            hidden = true,
+            no_ignore = true,
+            previewer = false,
+        },
+        lsp_references = {
+            previewer = false,
+        },
+        buffers = {
+            previewer = false,
         },
     },
 })

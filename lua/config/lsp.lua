@@ -6,40 +6,36 @@ lsp.preset('recommended')
 lsp.nvim_workspace()
 
 local cmp = require('cmp')
-local cmp_select = {behavior = cmp.SelectBehavior.Select}
+local cmp_select = { behavior = cmp.SelectBehavior.Select }
 local cmp_mappings = lsp.defaults.cmp_mappings({
-  ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
-  ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-  ['<C-y>'] = cmp.mapping.confirm({ select = true }),
-  ['<CR>'] = cmp.mapping.confirm({ select = true }),
-  ["<C-Space>"] = cmp.mapping.complete(),
+    ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
+    ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
+    ['<C-y>'] = cmp.mapping.confirm({ select = true }),
+    ['<CR>'] = cmp.mapping.confirm({ select = true }),
+    ["<C-Space>"] = cmp.mapping.complete(),
 })
 
 cmp_mappings['<Tab>'] = nil
 cmp_mappings['<S-Tab>'] = nil
 
 lsp.setup_nvim_cmp({
-  mapping = cmp_mappings
+    mapping = cmp_mappings
 })
 
 lsp.on_attach(function(client, bufnr)
-  lsp.default_keymaps({buffer = bufnr})
-  -- Show symbols in the current buffer
+    lsp.default_keymaps({ buffer = bufnr })
+    -- Show symbols in the current buffer
 end)
 
---lsp.format_on_save({
-  --format_opts = {
+lsp.format_on_save({
+    --format_opts = {
     --async = false,
     --timeout_ms = 10000,
-  --},
-  --servers = {
-    --['lua_ls'] = {'lua'},
-    --['rust_analyzer'] = {'rust'},
-    ---- if you have a working setup with null-ls
-    ---- you can specify filetypes it can format.
-    ---- ['null-ls'] = {'javascript', 'typescript'},
-  --}
---})
+    --},
+    servers = {
+        ['rust_analyzer'] = { 'rust' },
+    }
+})
 
 -- (Optional) Configure lua language server for neovim
 require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
@@ -57,6 +53,5 @@ lsp.set_preferences({
 lsp.setup()
 
 vim.diagnostic.config({
-    virtual_text = true
+    --virtual_text = false
 })
-

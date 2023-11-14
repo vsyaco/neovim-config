@@ -62,3 +62,7 @@ vim.keymap.set("n", "<leader>ow", ":%bd|e#|bd#<CR>", { noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>]d', '<cmd>lua vim.diagnostic.goto_next()<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>]d', '<cmd>lua vim.diagnostic.goto_next()<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>di', '<cmd>lua vim.diagnostic.open_float()<CR>', { noremap = true, silent = true })
+
+-- Ctrl + w + o -> Quit all other splits except the current one
+-- N up -> Move up N lines in normal mode
+-- N down -> Move down N lines in normal mode
