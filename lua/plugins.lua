@@ -43,7 +43,7 @@ vim.cmd [[packadd packer.nvim]]
 return require('packer').startup(function(use)
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
-
+    use "nvim-lua/plenary.nvim"
     use 'vim-airline/vim-airline'
     use 'vim-airline/vim-airline-themes'
     use 'tpope/vim-fugitive'
@@ -53,6 +53,11 @@ return require('packer').startup(function(use)
     use {
         'nvim-telescope/telescope.nvim', tag = '0.1.2',
         requires = { { 'nvim-lua/plenary.nvim' } }
+    }
+    use {
+        "ThePrimeagen/harpoon",
+        branch = "harpoon2",
+        requires = { {"nvim-lua/plenary.nvim"} }
     }
     use {
         'mg979/vim-visual-multi',
