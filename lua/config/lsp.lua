@@ -1,5 +1,30 @@
 local lsp = require('lsp-zero')
 
+-- (Optional) Configure intelephense for neovim with a license key
+local get_intelephense_license = function()
+    local f = assert(io.open(os.getenv("HOME") .. "/intelephense/license.txt", "rb"))
+
+    local content = f:read("*a")
+
+    f:close()
+
+    return string.gsub(content, "%s+", "")
+end
+
+lsp.configure("intelephense", {
+
+    on_attach = lsp.on_attach,
+
+    init_options = {
+
+        licenceKey = get_intelephense_license()
+
+    }
+
+})
+
+-- End of intelephense configuration
+
 lsp.preset('recommended')
 
 -- Fix Undefined global 'vim'
@@ -24,14 +49,9 @@ lsp.setup_nvim_cmp({
 
 lsp.on_attach(function(client, bufnr)
     lsp.default_keymaps({ buffer = bufnr })
-    -- Show symbols in the current buffer
 end)
 
 lsp.format_on_save({
-    --format_opts = {
-    --async = false,
-    --timeout_ms = 10000,
-    --},
     servers = {
         ['rust_analyzer'] = { 'rust' },
     }
