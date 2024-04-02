@@ -45,10 +45,8 @@ return require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
     use "nvim-lua/plenary.nvim"
     use 'vim-airline/vim-airline'
-    use 'vim-airline/vim-airline-themes'
     use 'tpope/vim-fugitive'
     use 'airblade/vim-gitgutter'
-    use 'drewtempelmeyer/palenight.vim'
     use({ 'rose-pine/neovim', as = 'rose-pine' })
     use {
         'nvim-telescope/telescope.nvim', tag = '0.1.2',
@@ -107,4 +105,5 @@ return require('packer').startup(function(use)
             require("config.nvim-tree")
         end,
     }
+    use("nvim-tree/nvim-web-devicons")
 end)
