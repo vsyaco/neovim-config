@@ -97,8 +97,17 @@ return require('packer').startup(function(use)
             { 'rafamadriz/friendly-snippets' },
         }
     }
-    use("github/copilot.vim")
-    -- Instal nvim-tree and set Ctrl-1 to toggle it
+    -- use("github/copilot.vim")
+    use {
+        "supermaven-inc/supermaven-nvim",
+        config = function()
+            require("supermaven-nvim").setup({
+                keymaps = {
+                    accept_suggestion = "<S-Enter>",
+                },
+            })
+        end,
+    }
     use {
         'nvim-tree/nvim-tree.lua',
         config = function()
