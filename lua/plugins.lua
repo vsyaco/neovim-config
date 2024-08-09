@@ -49,7 +49,7 @@ return require('packer').startup(function(use)
     use 'airblade/vim-gitgutter'
     use({ 'rose-pine/neovim', as = 'rose-pine' })
     use {
-        'nvim-telescope/telescope.nvim', tag = '0.1.2',
+        'nvim-telescope/telescope.nvim', tag = '0.1.8',
         requires = { { 'nvim-lua/plenary.nvim' } }
     }
     use {
@@ -99,20 +99,11 @@ return require('packer').startup(function(use)
     }
     -- use("github/copilot.vim")
     use {
-        "supermaven-inc/supermaven-nvim",
-        config = function()
-            require("supermaven-nvim").setup({
-                keymaps = {
-                    accept_suggestion = "<S-Enter>",
-                },
-            })
-        end,
-    }
-    use {
         'nvim-tree/nvim-tree.lua',
         config = function()
             require("config.nvim-tree")
         end,
     }
     use("nvim-tree/nvim-web-devicons")
+    use "lukas-reineke/indent-blankline.nvim"
 end)

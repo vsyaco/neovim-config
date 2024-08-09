@@ -41,4 +41,3 @@ vim.g["airline#extensions#tabline#enabled"] = 0
 
 -- Set cursorline
 vim.cmd [[ au VimEnter,WinEnter,BufWinEnter * setlocal cursorline ]]
-
