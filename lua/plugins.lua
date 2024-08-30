@@ -106,4 +106,12 @@ return require('packer').startup(function(use)
     }
     use("nvim-tree/nvim-web-devicons")
     use "lukas-reineke/indent-blankline.nvim"
+    use {
+        'ricardoramirezr/blade-nav.nvim',
+        requires = {
+            'hrsh7th/nvim-cmp',                -- if using nvim-cmp
+            { "ms-jpq/coq_nvim", branch = "coq" }, -- if using coq
+        },
+        ft = { 'blade', 'php' }
+    }
 end)

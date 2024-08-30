@@ -18,10 +18,13 @@ end
 
 -- pass to setup along with your other options
 require("nvim-tree").setup {
-    ---
     on_attach = my_on_attach,
-    ---
     update_focused_file = {
         enable = true,
-    }
+    },
+    actions = {
+        open_file = {
+            quit_on_open = true
+        },
+    },
 }

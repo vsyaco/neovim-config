@@ -2,7 +2,7 @@ local lsp = require('lsp-zero')
 
 -- (Optional) Configure intelephense for neovim with a license key
 local get_intelephense_license = function()
-    local f = assert(io.open(os.getenv("HOME") .. "/intelephense/license.txt", "rb"))
+    local f = assert(io.open(os.getenv("HOME") .. "/intelephense/licence.txt", "rb"))
 
     local content = f:read("*a")
 
