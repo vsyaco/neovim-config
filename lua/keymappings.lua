@@ -18,7 +18,13 @@ vim.api.nvim_set_keymap('n', '<C-]>', ':bnext<CR>', { noremap = true })
 -- Use Ctrl + [ to open the previous buffer
 vim.api.nvim_set_keymap('n', '<C-[>', ':bprevious<CR>', { noremap = true })
 
--- Use Ctrl + c to open the buffer list from telescope.lua
+-- Move between splits
+vim.api.nvim_set_keymap("n", "<C-.>", "<C-w>w", { noremap = true })
+vim.api.nvim_set_keymap("n", "<C-,>", "<C-w>W", { noremap = true })
+
+-- Move between splits in terminal mode
+vim.api.nvim_set_keymap("n", "<C-.>", "<C-w>w", { noremap = true })
+vim.api.nvim_set_keymap("t", "<C-,>", "<C-w>W", { noremap = true })
 
 -- Close the current buffer
 -- vim.api.nvim_set_keymap('n', '<C-w>', ':bd<CR>', {noremap = true})
@@ -44,7 +50,7 @@ vim.api.nvim_set_keymap('n', '<leader>nh', ':noh<CR>', { noremap = true })
 vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format, { remap = false })
 
 -- Format via LSP and update buffer file
-vim.keymap.set("n", "fw", function()
+vim.keymap.set("n", "ff", function()
     vim.lsp.buf.format()
     vim.cmd(":update")
 end, { remap = false })
@@ -54,8 +60,12 @@ vim.keymap.set("n", "<leader>lr", vim.lsp.buf.rename, { remap = false })
 vim.keymap.set("n", "<leader>lc", vim.lsp.buf.code_action, { remap = false })
 vim.keymap.set("v", "<leader>lc", vim.lsp.buf.code_action, { remap = false })
 
+vim.keymap.set("n", "zz", "ZZ", { noremap = true })
+vim.keymap.set("n", "zq", "ZQ", { noremap = true })
+
 -- Close buffer with leader + w
 vim.keymap.set("n", "<leader>w", ":bd<CR>", { noremap = true })
+
 -- Close all buffers except current one
 vim.keymap.set("n", "<leader>ow", ":%bd|e#|bd#<CR>", { noremap = true })
 
@@ -63,6 +73,12 @@ vim.api.nvim_set_keymap('n', '<leader>]d', '<cmd>lua vim.diagnostic.goto_next()<
 vim.api.nvim_set_keymap('n', '<leader>]d', '<cmd>lua vim.diagnostic.goto_next()<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>di', '<cmd>lua vim.diagnostic.open_float()<CR>', { noremap = true, silent = true })
 
--- Ctrl + w + o -> Quit all other splits except the current one
--- N up -> Move up N lines in normal mode
--- N down -> Move down N lines in normal mode
+-- " quicker open in vertical split - same like gd for go to definition
+vim.keymap.set("n", "gf", "<c-w>vgf", { noremap = true })
+
+-- Move code block up
+vim.keymap.set("v", "<C-h>", ":m '<-2<CR>gv=gv")
+vim.keymap.set("v", "<C-j>", ":m '>+1<CR>gv=gv")
+
+vim.api.nvim_set_keymap('n', '<C-h>', ':m .+1<CR>==', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<C-j>', ':m .-2<CR>==', { noremap = true, silent = true })

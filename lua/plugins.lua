@@ -48,6 +48,7 @@ return require('packer').startup(function(use)
     use 'tpope/vim-fugitive'
     use 'airblade/vim-gitgutter'
     use({ 'rose-pine/neovim', as = 'rose-pine' })
+    use 'folke/tokyonight.nvim'
     use {
         'nvim-telescope/telescope.nvim', tag = '0.1.8',
         requires = { { 'nvim-lua/plenary.nvim' } }
@@ -97,7 +98,17 @@ return require('packer').startup(function(use)
             { 'rafamadriz/friendly-snippets' },
         }
     }
-    -- use("github/copilot.vim")
+    use {
+        "supermaven-inc/supermaven-nvim",
+        commit = "40bde487fe31723cdd180843b182f70c6a991226",
+        config = function()
+            require("supermaven-nvim").setup({
+                keymaps = {
+                    accept_suggestion = "<S-Enter>",
+                },
+            })
+        end,
+    }
     use {
         'nvim-tree/nvim-tree.lua',
         config = function()
@@ -109,7 +120,7 @@ return require('packer').startup(function(use)
     use {
         'ricardoramirezr/blade-nav.nvim',
         requires = {
-            'hrsh7th/nvim-cmp',                -- if using nvim-cmp
+            'hrsh7th/nvim-cmp',                    -- if using nvim-cmp
             { "ms-jpq/coq_nvim", branch = "coq" }, -- if using coq
         },
         ft = { 'blade', 'php' }
