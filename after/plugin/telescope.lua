@@ -13,6 +13,9 @@ vim.keymap.set('n', 'vh', builtin.help_tags, {})
 -- Show symbols in the current document
 vim.keymap.set('n', '<leader>ls', builtin.lsp_document_symbols, {})
 
+-- Show symbols in the current project
+vim.keymap.set('n', '<leader>lp', builtin.lsp_dynamic_workspace_symbols, {})
+
 -- Show references to the current symbol
 vim.keymap.set('n', '<leader>gr', builtin.lsp_references, {})
 
