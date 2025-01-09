@@ -82,3 +82,11 @@ vim.keymap.set("v", "<C-j>", ":m '>+1<CR>gv=gv")
 
 vim.api.nvim_set_keymap('n', '<C-h>', ':m .+1<CR>==', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<C-j>', ':m .-2<CR>==', { noremap = true, silent = true })
+
+--- Navigate between quickfix items
+vim.api.nvim_set_keymap('n', '<leader>h', '<cmd>cnext<CR>zz', { desc = "Forward qfixlist", noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>;', '<cmd>cprev<CR>zz', { desc = "Backward qfixlist", noremap = true })
+
+--- Navigate between locations list items
+vim.api.nvim_set_keymap('n', '<leader>k', '<cmd>lnext<CR>zz', { desc = "Forward location list", noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>j', '<cmd>lprev<CR>zz', { desc = "Backward location list", noremap = true })
