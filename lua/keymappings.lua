@@ -63,6 +63,9 @@ vim.keymap.set("v", "<leader>lc", vim.lsp.buf.code_action, { remap = false })
 vim.keymap.set("n", "zz", "ZZ", { noremap = true })
 vim.keymap.set("n", "zq", "ZQ", { noremap = true })
 
+-- Close qfixlist
+vim.keymap.set("n", "fq", "<cmd>cclose<CR>", { noremap = true })
+
 -- Close buffer with leader + w
 vim.keymap.set("n", "<leader>w", ":bd<CR>", { noremap = true })
 
@@ -84,9 +87,9 @@ vim.api.nvim_set_keymap('n', '<C-h>', ':m .+1<CR>==', { noremap = true, silent =
 vim.api.nvim_set_keymap('n', '<C-j>', ':m .-2<CR>==', { noremap = true, silent = true })
 
 --- Navigate between quickfix items
-vim.api.nvim_set_keymap('n', '<leader>h', '<cmd>cnext<CR>zz', { desc = "Forward qfixlist", noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>;', '<cmd>cprev<CR>zz', { desc = "Backward qfixlist", noremap = true })
+vim.api.nvim_set_keymap('n', '<C-]>', '<cmd>cnext<CR>zz', { desc = "Forward qfixlist", noremap = true })
+vim.api.nvim_set_keymap('n', '<C-[>', '<cmd>cprev<CR>zz', { desc = "Backward qfixlist", noremap = true })
 
 --- Navigate between locations list items
-vim.api.nvim_set_keymap('n', '<leader>k', '<cmd>lnext<CR>zz', { desc = "Forward location list", noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>j', '<cmd>lprev<CR>zz', { desc = "Backward location list", noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>s', '<cmd>lnext<CR>zz', { desc = "Forward location list", noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>a', '<cmd>lprev<CR>zz', { desc = "Backward location list", noremap = true })
