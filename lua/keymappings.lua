@@ -18,6 +18,10 @@ vim.api.nvim_set_keymap('n', '<C-]>', ':bnext<CR>', { noremap = true })
 -- Use Ctrl + [ to open the previous buffer
 vim.api.nvim_set_keymap('n', '<C-[>', ':bprevious<CR>', { noremap = true })
 
+-- Splits
+vim.api.nvim_set_keymap("n", "<leader>v", ":vsplit<CR>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>s", ":split<CR>", { noremap = true })
+
 -- Move between splits
 vim.api.nvim_set_keymap("n", "<C-.>", "<C-w>w", { noremap = true })
 vim.api.nvim_set_keymap("n", "<C-,>", "<C-w>W", { noremap = true })
@@ -88,5 +92,5 @@ vim.api.nvim_set_keymap('n', '<C-]>', '<cmd>cnext<CR>zz', { desc = "Forward qfix
 vim.api.nvim_set_keymap('n', '<C-[>', '<cmd>cprev<CR>zz', { desc = "Backward qfixlist", noremap = true })
 
 --- Navigate between locations list items
-vim.api.nvim_set_keymap('n', '<leader>s', '<cmd>lnext<CR>zz', { desc = "Forward location list", noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>q', '<cmd>lnext<CR>zz', { desc = "Forward location list", noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>a', '<cmd>lprev<CR>zz', { desc = "Backward location list", noremap = true })
