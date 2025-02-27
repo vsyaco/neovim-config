@@ -25,9 +25,6 @@ vim.keymap.set('n', '<leader>gd', builtin.lsp_definitions, {})
 -- Show list of buffers
 vim.keymap.set('n', '<C-c>', builtin.buffers, {})
 
--- Search for a string
-vim.keymap.set('n', '<leader>fw', builtin.grep_string, {})
-
 -- Search much faster
 vim.keymap.set('n', '<leader>f', builtin.live_grep, {})
 
