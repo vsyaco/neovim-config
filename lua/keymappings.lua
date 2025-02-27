@@ -50,7 +50,7 @@ vim.api.nvim_set_keymap('n', '<leader>nh', ':noh<CR>', { noremap = true })
 vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format, { remap = false })
 
 -- Format via LSP and update buffer file
-vim.keymap.set("n", "ff", function()
+vim.keymap.set("n", "<leader>e", function()
     vim.lsp.buf.format()
     vim.cmd(":update")
 end, { remap = false })
@@ -60,11 +60,8 @@ vim.keymap.set("n", "<leader>lr", vim.lsp.buf.rename, { remap = false })
 vim.keymap.set("n", "<leader>lc", vim.lsp.buf.code_action, { remap = false })
 vim.keymap.set("v", "<leader>lc", vim.lsp.buf.code_action, { remap = false })
 
-vim.keymap.set("n", "zz", "ZZ", { noremap = true })
-vim.keymap.set("n", "zq", "ZQ", { noremap = true })
-
 -- Close qfixlist
-vim.keymap.set("n", "fq", "<cmd>cclose<CR>", { noremap = true })
+vim.keymap.set("n", "zx", "<cmd>cclose<CR>", { noremap = true })
 
 -- Close buffer with leader + w
 vim.keymap.set("n", "<leader>w", ":bd<CR>", { noremap = true })

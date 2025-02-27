@@ -6,8 +6,6 @@ vim.g.mapleader = " "
 
 vim.opt.relativenumber = true
 
-
-vim.api.nvim_set_keymap('', ',', '', {})
 vim.opt.compatible = false
 vim.opt.number = true
 vim.opt.hlsearch = true

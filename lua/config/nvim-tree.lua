@@ -25,4 +25,11 @@ require("nvim-tree").setup {
     disable_netrw = true,
     hijack_netrw = true,
     open_on_tab = false,
+    git = {
+        ignore = false,
+    },
+    filters = {
+        dotfiles = false,
+        custom = { "^\\.git$" },
+    },
 }

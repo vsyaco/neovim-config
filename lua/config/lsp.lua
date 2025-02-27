@@ -12,15 +12,10 @@ local get_intelephense_license = function()
 end
 
 lsp.configure("intelephense", {
-
     on_attach = lsp.on_attach,
-
     init_options = {
-
         licenceKey = get_intelephense_license()
-
     }
-
 })
 
 -- End of intelephense configuration
