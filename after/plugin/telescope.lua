@@ -19,9 +19,6 @@ vim.keymap.set('n', '<leader>lp', builtin.lsp_dynamic_workspace_symbols, {})
 -- Show references to the current symbol
 vim.keymap.set('n', '<leader>gr', builtin.lsp_references, {})
 
--- Go to definition or show a list of definitions
-vim.keymap.set('n', '<leader>gd', builtin.lsp_definitions, {})
-
 -- Show list of buffers
 vim.keymap.set('n', '<C-c>', builtin.buffers, {})
 

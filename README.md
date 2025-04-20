@@ -7,6 +7,7 @@ A modern, Lua-based Neovim configuration focused on productivity and a clean dev
 - 🚀 Fast startup with lazy loading plugins
 - 🔍 Fuzzy finding with Telescope
 - 🌲 File explorer with Neo-tree
+- ✨ Modern code completion with blink.cmp
 - 📝 LSP integration for code intelligence
 - 🎨 Syntax highlighting with Treesitter
 - ⚡ Quick file navigation with Harpoon
@@ -76,6 +77,7 @@ Navigate through the UI to install the language servers you need (e.g., lua_ls, 
 - `<leader>v` - Vertical split
 - `<leader>s` - Horizontal split
 - `<C-.>` / `<C-,>` - Navigate between splits
+- `<leader>]` / `<leader>[>` - Navigate between buffers
 - `<leader>w` - Close current buffer
 - `<leader>ow` - Close all buffers except current one
 - `<leader>nh` - Clear search highlighting
@@ -90,6 +92,7 @@ Navigate through the UI to install the language servers you need (e.g., lua_ls, 
 - `<leader>]d` - Go to next diagnostic
 - `<leader>di` - Open diagnostic float
 - `K` - Show documentation for current word
+- `gd` - Go to definition
 - `grn` - Rename symbol (global)
 - `gra` - Code action (global)
 - `grr` - Show references (global)
@@ -105,7 +108,6 @@ Navigate through the UI to install the language servers you need (e.g., lua_ls, 
 - `<leader>ls` - LSP document symbols
 - `<leader>lp` - LSP workspace symbols
 - `<leader>gr` - LSP references
-- `<leader>gd` - LSP definitions
 - `<C-c>` - List buffers
 - `<leader>f` - Live grep (search)
 - `<leader>gs` - Git status
@@ -118,6 +120,13 @@ Navigate through the UI to install the language servers you need (e.g., lua_ls, 
 - `<C-1>` to `<C-4>` - Jump to file 1-4
 - `<C-k>` - Previous harpoon file
 - `<C-l>` - Next harpoon file
+
+### Completion (blink.cmp)
+
+- `Tab` - Select completion / navigate
+- `Shift+Tab` - Previous completion item
+- `C-Space` - Open menu / Open docs
+- `C-e` - Hide menu
 
 ### Visual Mode
 
@@ -156,6 +165,8 @@ The configuration uses lazy.nvim for plugin management. Key plugins include:
 - **Telescope**: Fuzzy finder for files, buffers, and more
 - **Neo-tree**: File explorer with git integration
 - **Treesitter**: Advanced syntax highlighting
+- **blink.cmp**: Modern completion plugin
+- **friendly-snippets**: Snippet collection for blink.cmp
 - **Harpoon**: Quick file navigation
 - **Mason**: LSP server installer
 - **vim-visual-multi**: Multi-cursor editing
@@ -164,9 +175,9 @@ The configuration uses lazy.nvim for plugin management. Key plugins include:
 
 The configuration includes built-in LSP support with:
 
-- Automatic server configuration
+- Automatic server configuration via Mason
 - Semantic token support
-- Auto-completion
+- Auto-completion provided by `blink.cmp`
 - Diagnostics
 - Code actions
 - Formatting

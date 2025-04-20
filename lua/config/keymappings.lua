@@ -13,10 +13,10 @@ vim.cmd [[au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe 
 -- vim.api.nvim_set_keymap('n', '<C-1>', ':Ex<CR>', {noremap = true})
 
 -- Use Ctrl + ] to open the next buffer
-vim.api.nvim_set_keymap('n', '<C-]>', ':bnext<CR>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>]', ':bnext<CR>', { noremap = true })
 
 -- Use Ctrl + [ to open the previous buffer
-vim.api.nvim_set_keymap('n', '<C-[>', ':bprevious<CR>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>[', ':bprevious<CR>', { noremap = true })
 
 -- Splits
 vim.api.nvim_set_keymap("n", "<leader>v", ":vsplit<CR>", { noremap = true })
@@ -44,8 +44,6 @@ vim.api.nvim_set_keymap('n', '<Esc>', '', { noremap = true })
 -- Used by airblade/vim-gitgutter:
 
 -- ]c and [c to navigate between git hunks
-
--- Use K to show documentation for the current word
 
 -- Clear search highlights
 vim.api.nvim_set_keymap('n', '<leader>nh', ':noh<CR>', { noremap = true })
@@ -109,3 +107,5 @@ vim.keymap.set("n", "<C-`>", "<cmd>:Floaterminal<CR>")
 -- "gri" is mapped in Normal mode to vim.lsp.buf.implementation()
 -- "gO" is mapped in Normal mode to vim.lsp.buf.document_symbol()
 -- CTRL-S is mapped in Insert mode to vim.lsp.buf.signature_help()
+
+vim.api.nvim_set_keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", { noremap = true, silent = true })
