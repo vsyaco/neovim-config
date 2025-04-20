@@ -37,5 +37,11 @@ vim.env.FZF_DEFAULT_COMMAND = 'find . \\( -name vendor -o -name node_modules -o 
 
 vim.g["airline#extensions#tabline#enabled"] = 0
 
+-- Set colorsheme
+local ok, _ = pcall(vim.cmd, 'colorscheme ayu')
+if not ok then
+    vim.cmd 'colorscheme rose-pine-main' -- if the above fails, then use default
+end
+
 -- Set cursorline
 vim.cmd [[ au VimEnter,WinEnter,BufWinEnter * setlocal cursorline ]]

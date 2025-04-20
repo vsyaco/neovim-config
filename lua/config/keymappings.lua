@@ -96,6 +96,8 @@ vim.api.nvim_set_keymap('n', '<leader>a', '<cmd>lprev<CR>zz', { desc = "Backward
 --- Floatterminal
 vim.keymap.set("n", "<C-`>", "<cmd>:Floaterminal<CR>")
 
+-- Neo-tree
+vim.api.nvim_set_keymap('n', '<C-b>', ':Neotree toggle<CR>', { desc = "Neo-tree toggle", noremap = true })
 
 -- Default Neovim LSP bindings:
 -- K is mapped to vim.lsp.buf.hover() unless 'keywordprg' is customized or a custom keymap for K exists.
@@ -109,3 +111,4 @@ vim.keymap.set("n", "<C-`>", "<cmd>:Floaterminal<CR>")
 -- CTRL-S is mapped in Insert mode to vim.lsp.buf.signature_help()
 
 vim.api.nvim_set_keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", { noremap = true, silent = true })
+

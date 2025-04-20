@@ -1,5 +1,5 @@
-local harpoon = require("mason")
+local builtin = require("mason")
 
 -- REQUIRED
-harpoon:setup()
+builtin.setup()
 -- REQUIRED

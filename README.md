@@ -5,14 +5,17 @@ A modern, Lua-based Neovim configuration focused on productivity and a clean dev
 ## Features
 
 - 🚀 Fast startup with lazy loading plugins
-- 🔍 Fuzzy finding with Telescope
-- 🌲 File explorer with Neo-tree
-- ✨ Modern code completion with blink.cmp
-- 📝 LSP integration for code intelligence
-- 🎨 Syntax highlighting with Treesitter
-- ⚡ Quick file navigation with Harpoon
+- 🎨 Beautiful default theme ([Rose Pine](https://github.com/rose-pine/neovim))
+- ✨ Modern code completion with [blink.cmp](https://github.com/saghen/blink.cmp)
+- 🔍 Fuzzy finding with [Telescope](https://github.com/nvim-telescope/telescope.nvim)
+- 🌲 File explorer with [Neo-tree](https://github.com/nvim-neo-tree/neo-tree.nvim)
+- 📝 LSP integration via [Mason](https://github.com/williamboman/mason.nvim)
+- ✨ Syntax highlighting with [Treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
+- ⚡ Quick file navigation with [Harpoon](https://github.com/ThePrimeagen/harpoon)
 - 🖥️ Floating terminal for command execution
-- 📊 Multi-cursor editing with vim-visual-multi
+- 📊 Multi-cursor editing with [vim-visual-multi](https://github.com/mg979/vim-visual-multi)
+- ✈️ Sleek statusline with [Airline](https://github.com/vim-airline/vim-airline)
+- 💻 Git integration ([Fugitive](https://github.com/tpope/vim-fugitive), [GitGutter](https://github.com/airblade/vim-gitgutter))
 
 ## Requirements
 
@@ -57,8 +60,10 @@ Navigate through the UI to install the language servers you need (e.g., lua_ls, 
 ~/.config/nvim/
 ├── init.lua                 # Main entry point
 ├── lazy-lock.json           # Plugin version lock file
-├── after/                   # Post-load configurations
-│   └── plugin/              # Plugin-specific configurations
+├── after/                   # Post-load configurations (e.g., Mason, Neo-tree)
+│   └── plugin/
+│       ├── mason.lua        # Mason setup
+│       └── neo-tree.lua     # Neo-tree setup
 ├── lsp/                     # LSP server specific configurations
 └── lua/
     ├── config/              # Core configuration
@@ -77,6 +82,7 @@ Navigate through the UI to install the language servers you need (e.g., lua_ls, 
 - `<leader>v` - Vertical split
 - `<leader>s` - Horizontal split
 - `<C-.>` / `<C-,>` - Navigate between splits
+- `<C-b>` - Toggle Neo-tree file explorer
 - `<leader>]` / `<leader>[>` - Navigate between buffers
 - `<leader>w` - Close current buffer
 - `<leader>ow` - Close all buffers except current one
@@ -125,6 +131,7 @@ Navigate through the UI to install the language servers you need (e.g., lua_ls, 
 
 - `Tab` - Select completion / navigate
 - `Shift+Tab` - Previous completion item
+- `Enter` - Select and accept completion
 - `C-Space` - Open menu / Open docs
 - `C-e` - Hide menu
 
@@ -145,7 +152,9 @@ Navigate through the UI to install the language servers you need (e.g., lua_ls, 
 
 This configuration includes sensible defaults for a modern development environment:
 
+- **Colorscheme**: [Rose Pine](https://github.com/rose-pine/neovim) (with Ayu as fallback)
 - Relative line numbers with current line number shown
+- **Cursor Line**: Highlight the current line
 - 4-space indentation (tabs expanded to spaces)
 - No line wrapping
 - Mouse support
@@ -162,14 +171,18 @@ This configuration includes sensible defaults for a modern development environme
 
 The configuration uses lazy.nvim for plugin management. Key plugins include:
 
-- **Telescope**: Fuzzy finder for files, buffers, and more
-- **Neo-tree**: File explorer with git integration
-- **Treesitter**: Advanced syntax highlighting
-- **blink.cmp**: Modern completion plugin
-- **friendly-snippets**: Snippet collection for blink.cmp
-- **Harpoon**: Quick file navigation
-- **Mason**: LSP server installer
-- **vim-visual-multi**: Multi-cursor editing
+- **[Rose Pine](https://github.com/rose-pine/neovim)**: Default theme
+- **[blink.cmp](https://github.com/saghen/blink.cmp)**: Modern completion plugin
+- **[friendly-snippets](https://github.com/rafamadriz/friendly-snippets)**: Snippet collection for blink.cmp
+- **[Telescope](https://github.com/nvim-telescope/telescope.nvim)**: Fuzzy finder
+- **[Neo-tree](https://github.com/nvim-neo-tree/neo-tree.nvim)**: File explorer
+- **[Treesitter](https://github.com/nvim-treesitter/nvim-treesitter)**: Advanced syntax highlighting
+- **[Harpoon](https://github.com/ThePrimeagen/harpoon)**: Quick file navigation
+- **[Mason](https://github.com/williamboman/mason.nvim)**: LSP server installer & config
+- **[vim-visual-multi](https://github.com/mg979/vim-visual-multi)**: Multi-cursor editing
+- **[Airline](https://github.com/vim-airline/vim-airline)**: Statusline
+- **[Fugitive](https://github.com/tpope/vim-fugitive)**: Git wrapper
+- **[GitGutter](https://github.com/airblade/vim-gitgutter)**: Git diff signs
 
 ## LSP Setup
 
@@ -208,7 +221,7 @@ Edit `lua/config/keymappings.lua` to change or add key mappings.
 
 ### Changing Editor Settings
 
-Edit `lua/config/settings.lua` to modify editor behavior.
+Edit `lua/config/settings.lua` to modify editor behavior (e.g., colorscheme, cursorline).
 
 ### Adding LSP Servers
 
