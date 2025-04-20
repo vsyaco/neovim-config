@@ -94,3 +94,18 @@ vim.api.nvim_set_keymap('n', '<C-[>', '<cmd>cprev<CR>zz', { desc = "Backward qfi
 --- Navigate between locations list items
 vim.api.nvim_set_keymap('n', '<leader>q', '<cmd>lnext<CR>zz', { desc = "Forward location list", noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>a', '<cmd>lprev<CR>zz', { desc = "Backward location list", noremap = true })
+
+--- Floatterminal
+vim.keymap.set("n", "<C-`>", "<cmd>:Floaterminal<CR>")
+
+
+-- Default Neovim LSP bindings:
+-- K is mapped to vim.lsp.buf.hover() unless 'keywordprg' is customized or a custom keymap for K exists.
+-- GLOBAL DEFAULTS
+-- grr gra grn gri i_CTRL-S These GLOBAL keymaps are created unconditionally when Nvim starts:
+-- "grn" is mapped in Normal mode to vim.lsp.buf.rename()
+-- "gra" is mapped in Normal and Visual mode to vim.lsp.buf.code_action()
+-- "grr" is mapped in Normal mode to vim.lsp.buf.references()
+-- "gri" is mapped in Normal mode to vim.lsp.buf.implementation()
+-- "gO" is mapped in Normal mode to vim.lsp.buf.document_symbol()
+-- CTRL-S is mapped in Insert mode to vim.lsp.buf.signature_help()

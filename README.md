@@ -18,11 +18,6 @@ Run neovim
 nvim
 ```
 
-On initial Neovim start install in run PackerInstall
-```bash
-:PackerInstall
-```
-
 Then add neccessary language servers via Mason
 ```bash
 :Mason

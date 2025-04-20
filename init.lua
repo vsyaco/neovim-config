@@ -1,4 +1,5 @@
-require('plugins')
-require('settings')
-require('keymappings')
+require('config.settings')
+require('config.keymappings')
+require('config.lazy')
 require('config.lsp')
+

@@ -1,72 +1,43 @@
-local lsp = require('lsp-zero')
+vim.lsp.enable('luals')
+vim.lsp.enable('intelephense')
 
--- (Optional) Configure intelephense for neovim with a license key
-local get_intelephense_license = function()
-    local f = assert(io.open(os.getenv("HOME") .. "/intelephense/licence.txt", "rb"))
-
-    local content = f:read("*a")
-
-    f:close()
-
-    return string.gsub(content, "%s+", "")
-end
-
-lsp.configure("intelephense", {
-    on_attach = lsp.on_attach,
-    init_options = {
-        licenceKey = get_intelephense_license()
-    }
+vim.lsp.config('*', {
+    capabilities = {
+        textDocument = {
+            semanticTokens = {
+                multilineTokenSupport = true,
+            }
+        }
+    },
+    root_markers = { '.git' },
 })
 
--- End of intelephense configuration
-
-lsp.preset('recommended')
-
--- Fix Undefined global 'vim'
-lsp.nvim_workspace()
-
-local cmp = require('cmp')
-local cmp_select = { behavior = cmp.SelectBehavior.Select }
-local cmp_mappings = lsp.defaults.cmp_mappings({
-    ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
-    ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-    ['<C-y>'] = cmp.mapping.confirm({ select = true }),
-    ['<CR>'] = cmp.mapping.confirm({ select = true }),
-    ["<C-Space>"] = cmp.mapping.complete(),
+vim.api.nvim_create_autocmd('LspAttach', {
+    group = vim.api.nvim_create_augroup('my.lsp', {}),
+    callback = function(args)
+        local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
+        if client:supports_method('textDocument/implementation') then
+            -- Create a keymap for vim.lsp.buf.implementation ...
+        end
+        -- Enable auto-completion. Note: Use CTRL-Y to select an item. |complete_CTRL-Y|
+        if client:supports_method('textDocument/completion') then
+            -- Optional: trigger autocompletion on EVERY keypress. May be slow!
+            -- local chars = {}; for i = 32, 126 do table.insert(chars, string.char(i)) end
+            -- client.server_capabilities.completionProvider.triggerCharacters = chars
+            vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = true })
+        end
+        -- Auto-format ("lint") on save.
+        -- Usually not needed if server supports "textDocument/willSaveWaitUntil".
+        -- if not client:supports_method('textDocument/willSaveWaitUntil')
+        --    and client:supports_method('textDocument/formatting') then
+        --  vim.api.nvim_create_autocmd('BufWritePre', {
+        --    group = vim.api.nvim_create_augroup('my.lsp', {clear=false}),
+        --    buffer = args.buf,
+        --    callback = function()
+        --      vim.lsp.buf.format({ bufnr = args.buf, id = client.id, timeout_ms = 1000 })
+        --    end,
+        --  })
+        -- end
+    end,
 })
 
-cmp_mappings['<Tab>'] = nil
-cmp_mappings['<S-Tab>'] = nil
-
-lsp.setup_nvim_cmp({
-    mapping = cmp_mappings
-})
-
-lsp.on_attach(function(client, bufnr)
-    lsp.default_keymaps({ buffer = bufnr })
-end)
-
-lsp.format_on_save({
-    servers = {
-        ['rust_analyzer'] = { 'rust' },
-    }
-})
-
--- (Optional) Configure lua language server for neovim
-require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
-
-lsp.set_preferences({
-    suggest_lsp_servers = true,
-    sign_icons = {
-        error = 'E',
-        warn = 'W',
-        hint = 'H',
-        info = 'I'
-    }
-})
-
-lsp.setup()
-
-vim.diagnostic.config({
-    --virtual_text = false
-})
