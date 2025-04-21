@@ -7,6 +7,8 @@ A modern, Lua-based Neovim configuration focused on productivity and a clean dev
 - 🚀 Fast startup with lazy loading plugins
 - 🎨 Beautiful default theme ([Rose Pine](https://github.com/rose-pine/neovim))
 - ✨ Modern code completion with [blink.cmp](https://github.com/saghen/blink.cmp)
+- 🤖 AI-powered code completion with [Supermaven](https://github.com/supermaven-inc/supermaven-nvim)
+- 🧠 AI coding assistant with [CodeCompanion](https://github.com/olimorris/codecompanion.nvim) (requires `OPENROUTER_API_KEY` environment variable)
 - 🔍 Fuzzy finding with [Telescope](https://github.com/nvim-telescope/telescope.nvim)
 - 🌲 File explorer with [Neo-tree](https://github.com/nvim-neo-tree/neo-tree.nvim)
 - 📝 LSP integration via [Mason](https://github.com/williamboman/mason.nvim)
@@ -46,6 +48,17 @@ nvim
 
 The configuration will automatically install the lazy.nvim plugin manager and all configured plugins on the first run.
 
+**Note:** The CodeCompanion plugin uses OpenRouter. You need to set the `OPENROUTER_API_KEY` environment variable with your key for it to work. You can set it temporarily in your shell:
+```bash
+export OPENROUTER_API_KEY='your_openrouter_api_key'
+```
+Or add it permanently to your shell configuration file (e.g., `~/.zshrc` or `~/.bashrc`):
+```bash
+echo "export OPENROUTER_API_KEY='your_openrouter_api_key'" >> ~/.zshrc # Or ~/.bashrc
+source ~/.zshrc # Reload config
+```
+Replace `'your_openrouter_api_key'` with your actual key. Remember to restart Neovim after setting the variable.
+
 4. Install language servers using Mason:
 
 ```
@@ -62,8 +75,10 @@ Navigate through the UI to install the language servers you need (e.g., lua_ls, 
 ├── lazy-lock.json           # Plugin version lock file
 ├── after/                   # Post-load configurations (e.g., Mason, Neo-tree)
 │   └── plugin/
+│       ├── codecompanion.lua # CodeCompanion setup
 │       ├── mason.lua        # Mason setup
-│       └── neo-tree.lua     # Neo-tree setup
+│       ├── neo-tree.lua     # Neo-tree setup
+│       └── supermaven.lua   # Supermaven setup
 ├── lsp/                     # LSP server specific configurations
 └── lua/
     ├── config/              # Core configuration
@@ -72,6 +87,8 @@ Navigate through the UI to install the language servers you need (e.g., lua_ls, 
     │   ├── lsp.lua          # LSP configuration
     │   └── settings.lua     # Neovim settings
     └── plugins/             # Plugin specifications
+        ├── codecompanion.lua # CodeCompanion lazy spec
+        └── supermaven.lua    # Supermaven lazy spec
 ```
 
 ## Key Mappings
@@ -88,6 +105,14 @@ Navigate through the UI to install the language servers you need (e.g., lua_ls, 
 - `<leader>ow` - Close all buffers except current one
 - `<leader>nh` - Clear search highlighting
 - `<C-`>` - Open floating terminal
+
+### AI (CodeCompanion & Supermaven)
+
+- `<leader>aia` - CodeCompanion actions
+- `<leader>aic` - Toggle CodeCompanion chat
+- `<leader>aim` - Select AI model (OpenRouter)
+- `ga` (Visual) - Add selected code to CodeCompanion chat
+- `<C-k>` (Insert) - Accept Supermaven suggestion
 
 ### LSP
 
@@ -173,6 +198,8 @@ The configuration uses lazy.nvim for plugin management. Key plugins include:
 
 - **[Rose Pine](https://github.com/rose-pine/neovim)**: Default theme
 - **[blink.cmp](https://github.com/saghen/blink.cmp)**: Modern completion plugin
+- **[Supermaven](https://github.com/supermaven-inc/supermaven-nvim)**: AI code completion
+- **[CodeCompanion](https://github.com/olimorris/codecompanion.nvim)**: AI coding assistant (using OpenRouter - requires `OPENROUTER_API_KEY` env var)
 - **[friendly-snippets](https://github.com/rafamadriz/friendly-snippets)**: Snippet collection for blink.cmp
 - **[Telescope](https://github.com/nvim-telescope/telescope.nvim)**: Fuzzy finder
 - **[Neo-tree](https://github.com/nvim-neo-tree/neo-tree.nvim)**: File explorer
