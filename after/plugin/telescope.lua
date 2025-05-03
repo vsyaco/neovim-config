@@ -8,7 +8,7 @@ vim.keymap.set('n', '<leader>p', builtin.find_files, {})
 vim.keymap.set('n', '<C-p>', builtin.git_files, {})
 
 -- Show help_tags
-vim.keymap.set('n', 'vh', builtin.help_tags, {})
+vim.keymap.set('n', '<leader>ht', builtin.help_tags, {})
 
 -- Show symbols in the current document
 vim.keymap.set('n', '<leader>ls', builtin.lsp_document_symbols, {})

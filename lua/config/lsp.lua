@@ -1,5 +1,6 @@
 vim.lsp.enable('luals')
 vim.lsp.enable('intelephense')
+vim.lsp.enable('biome')
 
 vim.lsp.config('*', {
     capabilities = {
