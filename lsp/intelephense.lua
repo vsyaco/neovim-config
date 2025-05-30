@@ -8,7 +8,7 @@ return {
             },
             format = {
                 enable = true,
-                braces = "psr12",
+                braces = "symfony",
             },
         },
     }

@@ -33,9 +33,6 @@ vim.api.nvim_set_keymap("t", "<C-,>", "<C-w>W", { noremap = true })
 -- Close the current buffer
 -- vim.api.nvim_set_keymap('n', '<C-w>', ':bd<CR>', {noremap = true})
 
--- Find all in files
-vim.api.nvim_set_keymap('n', '<C-f>', ':Rg<CR>', { noremap = true })
-
 -- Unmap Esc key to switch between buffers
 vim.api.nvim_set_keymap('n', '<Esc>', '', { noremap = true })
 

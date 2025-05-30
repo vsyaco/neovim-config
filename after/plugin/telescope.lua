@@ -1,7 +1,7 @@
 local builtin = require('telescope.builtin')
 
 -- Search for file in project
-vim.keymap.set('n', '<leader>p', builtin.find_files, {})
+vim.keymap.set('n', '<C-f>', builtin.find_files, {})
 
 -- Search for file in project using git ls-files (for faster search when possible)
 -- Vertical split
