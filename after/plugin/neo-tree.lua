@@ -4,6 +4,17 @@ local builtin = require("neo-tree")
 builtin.setup({
     close_if_last_window = true,
     filesystem = {
+        filtered_items = {
+            hide_dotfiles = false,
+            hide_gitignored = false,
+            hide_hidden = false,
+            hide_by_name = {
+                ".git"
+            },
+            always_show_by_pattern = {
+                ".env*",
+            }
+        },
         follow_current_file = {
             enabled = true,
             leave_dirs_open = false,
