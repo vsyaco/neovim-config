@@ -5,6 +5,7 @@ vim.g.loaded_netrwPlugin = 1
 vim.g.mapleader = " "
 
 vim.opt.relativenumber = true
+vim.opt.signcolumn = "yes"
 
 vim.opt.compatible = false
 vim.opt.number = true
@@ -33,14 +34,17 @@ vim.opt.swapfile = false
 vim.opt.backup = false
 vim.opt.background = 'dark'
 
+-- Prepend mason bin to PATH
+vim.env.PATH = vim.fn.stdpath("data") .. "/mason/bin:" .. vim.env.PATH
+
 vim.env.FZF_DEFAULT_COMMAND = 'find . \\( -name vendor -o -name node_modules -o -name .git \\) -prune -o -print'
 
 vim.g["airline#extensions#tabline#enabled"] = 0
 
 -- Set colorsheme
-local ok, _ = pcall(vim.cmd, 'colorscheme ayu')
+local ok, _ = pcall(vim.cmd, 'colorscheme rose-pine')
 if not ok then
-    vim.cmd 'colorscheme rose-pine-main' -- if the above fails, then use default
+    vim.cmd 'colorscheme habamax' -- fallback to builtin
 end
 
 -- Set cursorline
