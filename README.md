@@ -38,6 +38,7 @@ The configuration will automatically install the lazy.nvim plugin manager and al
 - `<leader>s` - Horizontal split
 - `<C-.>` / `<C-,>` - Navigate between splits
 - `<C-b>` - Toggle Neo-tree file explorer
+- `<C-g>` - Toggle Neo-tree Git status (changed files) right sidebar
 - `<leader>]` / `<leader>[>` - Navigate between buffers
 - `<leader>w` - Close current buffer
 - `<leader>ow` - Close all buffers except current one

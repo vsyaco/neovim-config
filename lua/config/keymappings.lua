@@ -45,14 +45,12 @@ vim.api.nvim_set_keymap('n', '<Esc>', '', { noremap = true })
 -- Clear search highlights
 vim.api.nvim_set_keymap('n', '<leader>nh', ':noh<CR>', { noremap = true })
 
--- Format via LSP
-vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format, { remap = false })
+local format = require("config.format")
+
+vim.keymap.set("n", "<leader>lf", format.format_lsp, { remap = false })
 
 -- Format via LSP and update buffer file
-vim.keymap.set("n", "<leader>e", function()
-    vim.lsp.buf.format()
-    vim.cmd(":update")
-end, { remap = false })
+vim.keymap.set("n", "<leader>e", format.format_and_update, { remap = false })
 
 vim.keymap.set("n", "<leader>lr", vim.lsp.buf.rename, { remap = false })
 
@@ -95,6 +93,10 @@ vim.keymap.set("n", "<C-`>", "<cmd>:Floaterminal<CR>")
 
 -- Neo-tree
 vim.api.nvim_set_keymap('n', '<C-b>', ':Neotree toggle<CR>', { desc = "Neo-tree toggle", noremap = true })
+
+-- Neo-tree Git status (changed files) on the right sidebar
+vim.keymap.set("n", "<C-g>", "<cmd>Neotree toggle source=git_status position=right<CR>",
+    { desc = "Git status (right sidebar)", noremap = true, silent = true })
 
 -- Default Neovim LSP bindings:
 -- K is mapped to vim.lsp.buf.hover() unless 'keywordprg' is customized or a custom keymap for K exists.

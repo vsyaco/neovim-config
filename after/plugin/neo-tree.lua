@@ -2,6 +2,8 @@ local builtin = require("neo-tree")
 
 -- REQUIRED
 builtin.setup({
+    sources = { "filesystem", "git_status" },
+    enable_git_status = true,
     close_if_last_window = true,
     filesystem = {
         filtered_items = {
