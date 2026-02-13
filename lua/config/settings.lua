@@ -1,7 +1,3 @@
--- Disable netrw to use nvim-tree instead
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-
 vim.g.mapleader = " "
 
 vim.opt.relativenumber = true
@@ -19,7 +15,6 @@ vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 vim.opt.wrap = false
-vim.opt.swapfile = false
 vim.opt.mouse = 'a'
 vim.opt.clipboard = 'unnamed,unnamedplus'
 vim.opt.showmatch = true
@@ -39,9 +34,7 @@ vim.env.PATH = vim.fn.stdpath("data") .. "/mason/bin:" .. vim.env.PATH
 
 vim.env.FZF_DEFAULT_COMMAND = 'find . \\( -name vendor -o -name node_modules -o -name .git \\) -prune -o -print'
 
-vim.g["airline#extensions#tabline#enabled"] = 0
-
--- Set colorsheme
+-- Set colorscheme
 local ok, _ = pcall(vim.cmd, 'colorscheme rose-pine')
 if not ok then
     vim.cmd 'colorscheme habamax' -- fallback to builtin

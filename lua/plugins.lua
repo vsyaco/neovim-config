@@ -22,16 +22,37 @@ return {
             "nvim-tree/nvim-web-devicons",
             "MunifTanjim/nui.nvim",
         },
-        lazy = false,
-        opts = {
-            filesystem = {
-                filtered_items = {
-                    visible = true,
-                    hide_dotfiles = false,
-                    hide_gitignored = true,
+        lazy = true,
+        cmd = { "Neotree" },
+        init = function()
+            vim.g.loaded_netrw = 1
+            vim.g.loaded_netrwPlugin = 1
+        end,
+        config = function()
+            require("neo-tree").setup({
+                sources = { "filesystem", "git_status" },
+                enable_git_status = true,
+                close_if_last_window = true,
+                filesystem = {
+                    hijack_netrw_behavior = "open_default",
+                    filtered_items = {
+                        visible = true,
+                        hide_dotfiles = false,
+                        hide_gitignored = false,
+                        hide_hidden = false,
+                        hide_by_name = { ".git" },
+                        always_show_by_pattern = { ".env*" },
+                    },
+                    follow_current_file = {
+                        enabled = true,
+                        leave_dirs_open = false,
+                    },
                 },
-            }
-        },
+                window = {
+                    position = "left",
+                },
+            })
+        end,
     },
     {
         'nvim-telescope/telescope.nvim',
@@ -46,10 +67,24 @@ return {
         branch = "harpoon2",
         dependencies = { "nvim-lua/plenary.nvim" }
     },
+    {
+        'christoomey/vim-tmux-navigator',
+        lazy = false,
+    },
 
     -- LSP and Completion
     {
         "williamboman/mason.nvim"
+    },
+    {
+        "antosha417/nvim-lsp-file-operations",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "nvim-neo-tree/neo-tree.nvim",
+        },
+        config = function()
+            require("lsp-file-operations").setup()
+        end,
     },
     {
         'saghen/blink.cmp',
@@ -75,14 +110,37 @@ return {
     {
         'nvim-treesitter/nvim-treesitter',
     },
-
     -- Git
     { 'tpope/vim-fugitive' },
     { "airblade/vim-gitgutter" },
+    {
+        "sindrets/diffview.nvim",
+        dependencies = { "nvim-lua/plenary.nvim" },
+    },
+    {
+        'vsyaco/git-workflow.nvim',
+        dir = '~/Documents/projects/git-workflow.nvim',  -- Local development
+        dependencies = {
+            'nvim-telescope/telescope.nvim',
+            'sindrets/diffview.nvim',
+            'tpope/vim-fugitive',
+        },
+        config = function()
+            require('git-workflow').setup()
+        end,
+    },
 
     -- Editing
     {
         'mg979/vim-visual-multi',
         branch = 'master',
+    },
+
+    -- Help
+    {
+        'vsyaco/keymaps-help.nvim',
+        opts = {
+            show_on_startup = false,
+        },
     },
 }

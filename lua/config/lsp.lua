@@ -21,13 +21,19 @@ vim.diagnostic.config({
     severity_sort = true,
 })
 
+-- Merge capabilities from lsp-file-operations
+local file_operations_caps = {}
+pcall(function()
+    file_operations_caps = require("lsp-file-operations").default_capabilities()
+end)
+
 vim.lsp.config('*', {
-    capabilities = {
+    capabilities = vim.tbl_deep_extend("force", {
         textDocument = {
             semanticTokens = {
                 multilineTokenSupport = true,
             }
         }
-    },
+    }, file_operations_caps),
     root_markers = { '.git' },
 })
