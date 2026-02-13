@@ -29,6 +29,39 @@ nvim
 
 The configuration will automatically install the lazy.nvim plugin manager and all configured plugins on the first run.
 
+## Key Plugins
+
+This configuration includes the following main plugins:
+
+### Core
+- **[lazy.nvim](https://github.com/folke/lazy.nvim)** - Modern plugin manager
+- **[rose-pine](https://github.com/rose-pine/neovim)** - Color scheme
+- **[lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)** - Statusline
+
+### Navigation & UI
+- **[neo-tree.nvim](https://github.com/nvim-neo-tree/neo-tree.nvim)** - File explorer with git integration
+- **[telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)** - Fuzzy finder
+- **[harpoon](https://github.com/ThePrimeagen/harpoon)** - Quick file navigation (v2)
+- **[vim-tmux-navigator](https://github.com/christoomey/vim-tmux-navigator)** - Seamless tmux/vim navigation
+
+### LSP & Completion
+- **[mason.nvim](https://github.com/williamboman/mason.nvim)** - LSP/DAP/linter installer
+- **[blink.cmp](https://github.com/saghen/blink.cmp)** - Completion engine
+- **[nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)** - Syntax highlighting
+- **[nvim-lsp-file-operations](https://github.com/antosha417/nvim-lsp-file-operations)** - File operations via LSP
+
+### Git
+- **[git-workflow.nvim](https://github.com/vsyaco/git-workflow.nvim)** - Streamlined git workflow (custom plugin)
+- **[vim-fugitive](https://github.com/tpope/vim-fugitive)** - Git commands
+- **[vim-gitgutter](https://github.com/airblade/vim-gitgutter)** - Git diff in sign column
+- **[diffview.nvim](https://github.com/sindrets/diffview.nvim)** - Git diff viewer
+
+### Editing
+- **[vim-visual-multi](https://github.com/mg979/vim-visual-multi)** - Multiple cursors
+
+### Utilities
+- **[keymaps-help.nvim](https://github.com/vsyaco/keymaps-help.nvim)** - Interactive keymaps viewer (custom plugin)
+
 ## Keymaps
 
 ### General
@@ -119,7 +152,9 @@ The configuration will automatically install the lazy.nvim plugin manager and al
 | `gf` | Open file under cursor in vertical split | n |
 | `zx` | Close quickfix list | n |
 
-### Git Workflow (diffview.nvim + telescope)
+### Git Workflow
+
+Powered by [git-workflow.nvim](https://github.com/vsyaco/git-workflow.nvim) - integrates Telescope, Diffview, and Fugitive.
 
 | Key | Action | Mode |
 |-----|--------|------|
@@ -138,7 +173,14 @@ The configuration will automatically install the lazy.nvim plugin manager and al
 | Key | Action | Mode |
 |-----|--------|------|
 | `j` / `k` | Navigate files | n |
-| `Enter` | Show diff for file | n |
+| `<CR>` | Show diff for file | n |
 | `o` | Open file in editor | n |
-| `Ctrl+o` | Open file in new tab | n |
+| `<C-o>` | Open file in new tab | n |
 | `s` | Stage/unstage file | n |
+
+### Git Hunks (vim-gitgutter)
+
+| Key | Action | Mode |
+|-----|--------|------|
+| `]c` | Next git hunk | n |
+| `[c` | Previous git hunk | n |
