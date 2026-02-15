@@ -42,7 +42,6 @@ This configuration includes the following main plugins:
 - **[neo-tree.nvim](https://github.com/nvim-neo-tree/neo-tree.nvim)** - File explorer with git integration
 - **[telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)** - Fuzzy finder
 - **[harpoon](https://github.com/ThePrimeagen/harpoon)** - Quick file navigation (v2)
-- **[vim-tmux-navigator](https://github.com/christoomey/vim-tmux-navigator)** - Seamless tmux/vim navigation
 
 ### LSP & Completion
 - **[mason.nvim](https://github.com/williamboman/mason.nvim)** - LSP/DAP/linter installer
@@ -51,7 +50,6 @@ This configuration includes the following main plugins:
 - **[nvim-lsp-file-operations](https://github.com/antosha417/nvim-lsp-file-operations)** - File operations via LSP
 
 ### Git
-- **[git-workflow.nvim](https://github.com/vsyaco/git-workflow.nvim)** - Streamlined git workflow (custom plugin)
 - **[vim-fugitive](https://github.com/tpope/vim-fugitive)** - Git commands
 - **[vim-gitgutter](https://github.com/airblade/vim-gitgutter)** - Git diff in sign column
 - **[diffview.nvim](https://github.com/sindrets/diffview.nvim)** - Git diff viewer
@@ -60,7 +58,8 @@ This configuration includes the following main plugins:
 - **[vim-visual-multi](https://github.com/mg979/vim-visual-multi)** - Multiple cursors
 
 ### Utilities
-- **[keymaps-help.nvim](https://github.com/vsyaco/keymaps-help.nvim)** - Interactive keymaps viewer (custom plugin)
+- **[which-key.nvim](https://github.com/folke/which-key.nvim)** - Interactive keymaps navigation (shows available commands as you type)
+- **[keymaps-help.nvim](https://github.com/vsyaco/keymaps-help.nvim)** - Full keymaps list viewer (custom plugin)
 
 ## Keymaps
 
@@ -72,7 +71,7 @@ This configuration includes the following main plugins:
 | `<leader>v` | Vertical split | n |
 | `<leader>s` | Horizontal split | n |
 | `<C-.>` / `<C-,>` | Navigate between splits | n |
-| `<C-h/j/k/l>` | Navigate splits + tmux panes | n |
+| `Prefix+h/j/k/l` | Navigate tmux panes (in tmux) | n |
 | `<C-b>` | Toggle Neo-tree file explorer | n |
 | `<C-g>` | Toggle Neo-tree Git status sidebar | n |
 | `<leader>]` / `<leader>[` | Navigate between buffers | n |
@@ -80,7 +79,8 @@ This configuration includes the following main plugins:
 | `<leader>ow` | Close all buffers except current | n |
 | `<leader>nh` | Clear search highlighting | n |
 | `` <C-`> `` | Open floating terminal | n |
-| `?` / `<C-/>` | Toggle keymaps help | n |
+| `?` / `<C-/>` | Show all keymaps (full list) | n |
+| `<Leader>` (wait) | Show which-key menu (interactive) | n |
 
 ### LSP
 
@@ -154,19 +154,22 @@ This configuration includes the following main plugins:
 
 ### Git Workflow
 
-Powered by [git-workflow.nvim](https://github.com/vsyaco/git-workflow.nvim) - integrates Telescope, Diffview, and Fugitive.
+Using standard plugins: Telescope, Diffview, and Fugitive.
 
 | Key | Action | Mode |
 |-----|--------|------|
-| `<leader>gl` | Git log (telescope) → diffview | n |
-| `<leader>gL` | Git log for current file → diffview | n |
+| `<leader>gl` | Git log (all commits) | n |
+| `<leader>gL` | Git log (current file) | n |
+| `<leader>gb` | Git branches | n |
+| `<leader>gB` | Create new branch | n |
+| `<leader>gs` | Git status | n |
 | `<leader>gd` | Diffview: unstaged changes | n |
 | `<leader>gD` | Diffview: staged changes | n |
 | `<leader>gh` | Diffview: file history | n |
 | `<leader>gH` | Diffview: repo history | n |
 | `<leader>gx` | Close diffview | n |
-| `<leader>gb` | Git branches (telescope) | n |
-| `<leader>gB` | Create new branch | n |
+| `<leader>gp` | Git push | n |
+| `<leader>gP` | Git pull | n |
 
 #### Inside Diffview file panel
 

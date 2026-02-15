@@ -67,10 +67,6 @@ return {
         branch = "harpoon2",
         dependencies = { "nvim-lua/plenary.nvim" }
     },
-    {
-        'christoomey/vim-tmux-navigator',
-        lazy = false,
-    },
 
     -- LSP and Completion
     {
@@ -116,17 +112,10 @@ return {
     {
         "sindrets/diffview.nvim",
         dependencies = { "nvim-lua/plenary.nvim" },
-    },
-    {
-        'vsyaco/git-workflow.nvim',
-        dir = '~/Documents/projects/git-workflow.nvim',  -- Local development
-        dependencies = {
-            'nvim-telescope/telescope.nvim',
-            'sindrets/diffview.nvim',
-            'tpope/vim-fugitive',
-        },
         config = function()
-            require('git-workflow').setup()
+            require('diffview').setup({
+                enhanced_diff_hl = true,
+            })
         end,
     },
 
@@ -136,11 +125,79 @@ return {
         branch = 'master',
     },
 
-    -- Help
+    -- Help & Keybindings
+    {
+        "folke/which-key.nvim",
+        event = "VeryLazy",
+        config = function()
+            local wk = require("which-key")
+            wk.setup({
+                preset = "modern",
+                delay = 500,
+            })
+
+            -- Register key groups and commands
+            wk.add({
+                -- Leader key groups
+                { "<leader>g", group = "Git" },
+                { "<leader>l", group = "LSP" },
+                { "<leader>o", group = "Other" },
+                { "<leader>n", group = "Clear" },
+
+                -- LSP commands (with descriptions)
+                { "<leader>lf", desc = "Format code (LSP)" },
+                { "<leader>ls", desc = "Document symbols" },
+                { "<leader>lp", desc = "Workspace symbols" },
+                { "<leader>ld", desc = "Diagnostics" },
+                { "<leader>]d", desc = "Next diagnostic" },
+                { "<leader>di", desc = "Show diagnostic" },
+
+                -- Buffer commands
+                { "<leader>]", desc = "Next buffer" },
+                { "<leader>[", desc = "Previous buffer" },
+                { "<leader>w", desc = "Close buffer" },
+                { "<leader>ow", desc = "Close other buffers" },
+
+                -- Splits
+                { "<leader>v", desc = "Vertical split" },
+                { "<leader>s", desc = "Horizontal split" },
+
+                -- Format and save
+                { "<leader>e", desc = "Format & save" },
+
+                -- Navigation
+                { "<leader>q", desc = "Next location" },
+                { "<leader>a", desc = "Previous location" },
+
+                -- Clear
+                { "<leader>nh", desc = "Clear highlights" },
+
+                -- Telescope
+                { "<leader>f", desc = "Live grep" },
+                { "<leader>ht", desc = "Help tags" },
+                { "<leader>gr", desc = "LSP references" },
+
+                -- Global LSP keymaps (built-in Neovim)
+                { "gd", desc = "Go to definition" },
+                { "grr", desc = "References" },
+                { "grn", desc = "Rename" },
+                { "gra", desc = "Code action" },
+                { "gri", desc = "Implementation" },
+                { "gO", desc = "Document symbols" },
+                { "K", desc = "Hover documentation" },
+            })
+        end,
+    },
     {
         'vsyaco/keymaps-help.nvim',
         opts = {
             show_on_startup = false,
+        },
+        keys = {
+            -- Use Ctrl+/ for keymaps-help (full list view)
+            -- which-key shows on Leader delay (interactive navigation)
+            { "<C-/>", "<cmd>KeymapsHelp<CR>", desc = "Show all keymaps (full list)" },
+            { "?", "<cmd>KeymapsHelp<CR>", desc = "Show all keymaps (full list)" },
         },
     },
 }
