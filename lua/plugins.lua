@@ -136,55 +136,12 @@ return {
                 delay = 500,
             })
 
-            -- Register key groups and commands
+            -- Register only key groups (which-key auto-discovers commands from desc)
             wk.add({
-                -- Leader key groups
                 { "<leader>g", group = "Git" },
                 { "<leader>l", group = "LSP" },
                 { "<leader>o", group = "Other" },
                 { "<leader>n", group = "Clear" },
-
-                -- LSP commands (with descriptions)
-                { "<leader>lf", desc = "Format code (LSP)" },
-                { "<leader>ls", desc = "Document symbols" },
-                { "<leader>lp", desc = "Workspace symbols" },
-                { "<leader>ld", desc = "Diagnostics" },
-                { "<leader>]d", desc = "Next diagnostic" },
-                { "<leader>di", desc = "Show diagnostic" },
-
-                -- Buffer commands
-                { "<leader>]", desc = "Next buffer" },
-                { "<leader>[", desc = "Previous buffer" },
-                { "<leader>w", desc = "Close buffer" },
-                { "<leader>ow", desc = "Close other buffers" },
-
-                -- Splits
-                { "<leader>v", desc = "Vertical split" },
-                { "<leader>s", desc = "Horizontal split" },
-
-                -- Format and save
-                { "<leader>e", desc = "Format & save" },
-
-                -- Navigation
-                { "<leader>q", desc = "Next location" },
-                { "<leader>a", desc = "Previous location" },
-
-                -- Clear
-                { "<leader>nh", desc = "Clear highlights" },
-
-                -- Telescope
-                { "<leader>f", desc = "Live grep" },
-                { "<leader>ht", desc = "Help tags" },
-                { "<leader>gr", desc = "LSP references" },
-
-                -- Global LSP keymaps (built-in Neovim)
-                { "gd", desc = "Go to definition" },
-                { "grr", desc = "References" },
-                { "grn", desc = "Rename" },
-                { "gra", desc = "Code action" },
-                { "gri", desc = "Implementation" },
-                { "gO", desc = "Document symbols" },
-                { "K", desc = "Hover documentation" },
             })
         end,
     },

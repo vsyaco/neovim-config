@@ -1,3 +1,16 @@
+-- ========================================
+-- Keymappings Configuration
+-- ========================================
+-- IMPORTANT: The 'desc' parameter is the SINGLE SOURCE OF TRUTH for command descriptions
+-- - which-key.nvim automatically discovers commands from 'desc'
+-- - keymaps-help.nvim reads from README.md
+-- - No need to duplicate descriptions in plugins.lua!
+--
+-- When adding a new keymap:
+-- 1. Add it here with a clear 'desc' parameter
+-- 2. Update README.md if it's a major feature
+-- 3. That's it! which-key will show it automatically
+
 -- Keep VisualMode after indent with > or <
 vim.api.nvim_set_keymap('v', '<', '<gv', { noremap = true, desc = "Indent left" })
 vim.api.nvim_set_keymap('v', '>', '>gv', { noremap = true, desc = "Indent right" })
