@@ -71,7 +71,6 @@ This configuration includes the following main plugins:
 | `<leader>v` | Vertical split | n |
 | `<leader>s` | Horizontal split | n |
 | `<C-.>` / `<C-,>` | Navigate between splits | n |
-| `Prefix+h/j/k/l` | Navigate tmux panes (in tmux) | n |
 | `<C-b>` | Toggle Neo-tree file explorer | n |
 | `<C-g>` | Toggle Neo-tree Git status sidebar | n |
 | `<leader>]` / `<leader>[` | Navigate between buffers | n |
