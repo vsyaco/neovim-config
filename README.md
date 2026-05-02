@@ -2,8 +2,9 @@
 
 ## Requirements
 
-- Neovim >= 0.8.0
+- Neovim >= 0.12.0
 - Git
+- [tree-sitter CLI](https://tree-sitter.github.io/) (for parser installation)
 - A [Nerd Font](https://www.nerdfonts.com/) (optional, but recommended for icons)
 - Node.js (for some LSP servers)
 
@@ -46,7 +47,7 @@ This configuration includes the following main plugins:
 ### LSP & Completion
 - **[mason.nvim](https://github.com/williamboman/mason.nvim)** - LSP/DAP/linter installer
 - **[blink.cmp](https://github.com/saghen/blink.cmp)** - Completion engine
-- **[nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)** - Syntax highlighting
+- **[tree-sitter-manager.nvim](https://github.com/romus204/tree-sitter-manager.nvim)** - Tree-sitter parser installer
 - **[nvim-lsp-file-operations](https://github.com/antosha417/nvim-lsp-file-operations)** - File operations via LSP
 
 ### Git

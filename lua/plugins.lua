@@ -50,6 +50,15 @@ return {
                 },
                 window = {
                     position = "left",
+                    mappings = {
+                        ["<C-b>"] = "close_window",
+                    },
+                },
+                buffers = {
+                    renderers = {},
+                },
+                git_status = {
+                    renderers = {},
                 },
             })
         end,
@@ -104,9 +113,26 @@ return {
         opts_extend = { "sources.default" }
     },
     {
-        'nvim-treesitter/nvim-treesitter',
+        'romus204/tree-sitter-manager.nvim',
         lazy = false,
-        build = ':TSUpdate',
+        opts = {
+            ensure_installed = {
+                'c',
+                'lua',
+                'vim',
+                'vimdoc',
+                'query',
+                'markdown',
+                'markdown_inline',
+                'yaml',
+                'json',
+                'php',
+                'html',
+                'css',
+            },
+            auto_install = true,
+            highlight = true,
+        },
     },
     -- Git
     { 'tpope/vim-fugitive' },
