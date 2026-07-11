@@ -43,10 +43,6 @@ vim.api.nvim_set_keymap('n', '<Esc>', '', { noremap = true })
 
 -- Ctrl + n is used by vim visual multi
 
--- Used by airblade/vim-gitgutter:
-
--- ]c and [c to navigate between git hunks
-
 -- Clear search highlights
 vim.api.nvim_set_keymap('n', '<leader>nh', ':noh<CR>', { noremap = true, desc = "Clear highlights" })
 
@@ -85,12 +81,21 @@ vim.api.nvim_set_keymap('n', '<M-k>', ':m .-2<CR>==', { noremap = true, silent =
 vim.api.nvim_set_keymap('n', '<C-]>', '<cmd>cnext<CR>zz', { desc = "Forward qfixlist", noremap = true })
 vim.api.nvim_set_keymap('n', '<C-[>', '<cmd>cprev<CR>zz', { desc = "Backward qfixlist", noremap = true })
 
---- Navigate between locations list items
-vim.api.nvim_set_keymap('n', '<leader>q', '<cmd>lnext<CR>zz', { desc = "Forward location list", noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>a', '<cmd>lprev<CR>zz', { desc = "Backward location list", noremap = true })
+--- Navigate between location list items
+vim.api.nvim_set_keymap('n', ']l', '<cmd>lnext<CR>zz', { desc = "Next location", noremap = true })
+vim.api.nvim_set_keymap('n', '[l', '<cmd>lprev<CR>zz', { desc = "Previous location", noremap = true })
 
---- Floatterminal
-vim.keymap.set("n", "<C-`>", "<cmd>:Floaterminal<CR>", { desc = "Toggle terminal" })
+--- Floating terminal
+vim.keymap.set("n", "<C-`>", function()
+    Snacks.terminal(nil, {
+        win = {
+            position = 'float',
+            border = 'rounded',
+            width = 0.8,
+            height = 0.8,
+        },
+    })
+end, { desc = "Toggle terminal" })
 
 -- Neo-tree
 vim.api.nvim_set_keymap('n', '<C-b>', ':Neotree toggle<CR>', { desc = "Toggle file tree", noremap = true })
@@ -112,8 +117,7 @@ vim.keymap.set("n", "<C-g>", "<cmd>Neotree toggle source=git_status position=rig
 
 vim.api.nvim_set_keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", { noremap = true, silent = true, desc = "Go to definition" })
 
--- Git workflow (simplified - removed custom plugin)
--- Using standard plugins: telescope, diffview, fugitive
+-- Git workflow
 local telescope_builtin_ok, telescope_builtin = pcall(require, 'telescope.builtin')
 
 if telescope_builtin_ok then
@@ -130,6 +134,14 @@ vim.keymap.set("n", "<leader>gD", "<cmd>DiffviewOpen --staged<CR>", { desc = "Di
 vim.keymap.set("n", "<leader>gh", "<cmd>DiffviewFileHistory %<CR>", { desc = "Diffview: file history" })
 vim.keymap.set("n", "<leader>gH", "<cmd>DiffviewFileHistory<CR>", { desc = "Diffview: repo history" })
 vim.keymap.set("n", "<leader>gx", "<cmd>DiffviewClose<CR>", { desc = "Close diffview" })
+
+vim.keymap.set("n", "<leader>gg", function()
+    Snacks.lazygit({ cwd = Snacks.git.get_root() or (vim.uv or vim.loop).cwd() })
+end, { desc = "Lazygit" })
+
+vim.keymap.set("n", "<leader>gS", function()
+    require('config.git').open_menu()
+end, { desc = "Git highlight settings" })
 
 -- Fugitive keymaps
 vim.keymap.set("n", "<leader>gB", "<cmd>Git checkout -b ", { desc = "Create new branch" })

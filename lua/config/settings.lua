@@ -24,7 +24,7 @@ vim.opt.splitbelow = true
 vim.opt.list = true
 vim.opt.listchars = { tab = '¦ ' }
 vim.opt.syntax = 'on'
-vim.opt.updatetime = 50
+vim.opt.updatetime = 250
 vim.opt.swapfile = false
 vim.opt.backup = false
 vim.opt.background = 'dark'
