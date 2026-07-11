@@ -69,7 +69,16 @@ return {
         dependencies = {
             'nvim-lua/plenary.nvim',
             { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
-        }
+        },
+        opts = {
+            defaults = {
+                preview = {
+                    treesitter = {
+                        disable = { 'diff' },
+                    },
+                },
+            },
+        },
     },
     {
         "ThePrimeagen/harpoon",

@@ -139,9 +139,17 @@ vim.keymap.set("n", "<leader>gg", function()
     Snacks.lazygit({ cwd = Snacks.git.get_root() or (vim.uv or vim.loop).cwd() })
 end, { desc = "Lazygit" })
 
-vim.keymap.set("n", "<leader>gS", function()
+vim.keymap.set("n", "<leader>gt", function()
+    require('config.git').toggle_highlights()
+end, { desc = "Toggle review highlights" })
+
+vim.keymap.set("n", "<leader>gT", function()
     require('config.git').open_menu()
-end, { desc = "Git highlight settings" })
+end, { desc = "Review highlight settings" })
+
+vim.keymap.set("n", "<leader>gm", function()
+    require('config.git').toggle_review()
+end, { desc = "Toggle review mode" })
 
 -- Fugitive keymaps
 vim.keymap.set("n", "<leader>gB", "<cmd>Git checkout -b ", { desc = "Create new branch" })

@@ -35,7 +35,7 @@ vim.env.PATH = vim.fn.stdpath("data") .. "/mason/bin:" .. vim.env.PATH
 vim.env.FZF_DEFAULT_COMMAND = 'find . \\( -name vendor -o -name node_modules -o -name .git \\) -prune -o -print'
 
 -- Set colorscheme
-local ok, _ = pcall(vim.cmd, 'colorscheme rose-pine')
+local ok, _ = pcall(vim.cmd, 'colorscheme rose-pine-moon')
 if not ok then
     vim.cmd 'colorscheme habamax' -- fallback to builtin
 end
