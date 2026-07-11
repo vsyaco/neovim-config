@@ -24,7 +24,7 @@ vim.opt.splitbelow = true
 vim.opt.list = true
 vim.opt.listchars = { tab = '¦ ' }
 vim.opt.syntax = 'on'
-vim.opt.updatetime = 50
+vim.opt.updatetime = 250
 vim.opt.swapfile = false
 vim.opt.backup = false
 vim.opt.background = 'dark'
@@ -35,7 +35,7 @@ vim.env.PATH = vim.fn.stdpath("data") .. "/mason/bin:" .. vim.env.PATH
 vim.env.FZF_DEFAULT_COMMAND = 'find . \\( -name vendor -o -name node_modules -o -name .git \\) -prune -o -print'
 
 -- Set colorscheme
-local ok, _ = pcall(vim.cmd, 'colorscheme rose-pine')
+local ok, _ = pcall(vim.cmd, 'colorscheme rose-pine-moon')
 if not ok then
     vim.cmd 'colorscheme habamax' -- fallback to builtin
 end

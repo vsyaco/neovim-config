@@ -69,7 +69,16 @@ return {
         dependencies = {
             'nvim-lua/plenary.nvim',
             { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
-        }
+        },
+        opts = {
+            defaults = {
+                preview = {
+                    treesitter = {
+                        disable = { 'diff' },
+                    },
+                },
+            },
+        },
     },
     {
         "ThePrimeagen/harpoon",
@@ -136,7 +145,12 @@ return {
     },
     -- Git
     { 'tpope/vim-fugitive' },
-    { "airblade/vim-gitgutter" },
+    {
+        'lewis6991/gitsigns.nvim',
+        config = function()
+            require('config.git').setup()
+        end,
+    },
     {
         "sindrets/diffview.nvim",
         dependencies = { "nvim-lua/plenary.nvim" },
@@ -153,6 +167,24 @@ return {
         branch = 'master',
     },
 
+    -- Agent workflow
+    {
+        'folke/snacks.nvim',
+        priority = 1000,
+        lazy = false,
+        opts = {
+            terminal = {},
+            lazygit = {},
+        },
+    },
+    {
+        'folke/sidekick.nvim',
+        dependencies = { 'folke/snacks.nvim' },
+        config = function()
+            require('config.ai').setup()
+        end,
+    },
+
     -- Help & Keybindings
     {
         "folke/which-key.nvim",
@@ -166,6 +198,7 @@ return {
 
             -- Register only key groups (which-key auto-discovers commands from desc)
             wk.add({
+                { "<leader>a", group = "AI" },
                 { "<leader>g", group = "Git" },
                 { "<leader>l", group = "LSP" },
                 { "<leader>o", group = "Other" },

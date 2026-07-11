@@ -7,6 +7,9 @@
 - [tree-sitter CLI](https://tree-sitter.github.io/) (for parser installation)
 - A [Nerd Font](https://www.nerdfonts.com/) (optional, but recommended for icons)
 - Node.js (for some LSP servers)
+- [lazygit](https://github.com/jesseduffield/lazygit)
+- [Zellij](https://zellij.dev/) for persistent AI CLI sessions
+- [Codex CLI](https://github.com/openai/codex) and/or [OpenCode](https://opencode.ai/)
 
 ## Installation
 
@@ -52,8 +55,12 @@ This configuration includes the following main plugins:
 
 ### Git
 - **[vim-fugitive](https://github.com/tpope/vim-fugitive)** - Git commands
-- **[vim-gitgutter](https://github.com/airblade/vim-gitgutter)** - Git diff in sign column
+- **[gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)** - Git signs, hunks, and persistent highlights
 - **[diffview.nvim](https://github.com/sindrets/diffview.nvim)** - Git diff viewer
+
+### Agent workflow
+- **[sidekick.nvim](https://github.com/folke/sidekick.nvim)** - Codex/OpenCode CLI bridge with file watching
+- **[snacks.nvim](https://github.com/folke/snacks.nvim)** - Floating terminal and lazygit UI
 
 ### Editing
 - **[vim-visual-multi](https://github.com/mg979/vim-visual-multi)** - Multiple cursors
@@ -79,6 +86,7 @@ This configuration includes the following main plugins:
 | `<leader>ow` | Close all buffers except current | n |
 | `<leader>nh` | Clear search highlighting | n |
 | `` <C-`> `` | Open floating terminal | n |
+| `[l` / `]l` | Previous/next location-list item | n |
 | `?` / `<C-/>` | Show all keymaps (full list) | n |
 | `<Leader>` (wait) | Show which-key menu (interactive) | n |
 
@@ -147,7 +155,6 @@ This configuration includes the following main plugins:
 | Key | Action | Mode |
 |-----|--------|------|
 | `<C-]>` / `<C-[>` | Navigate between quickfix items | n |
-| `<leader>q` / `<leader>a` | Navigate between location list items | n |
 | `<M-k>` / `<M-j>` | Move line up/down | n |
 | `gf` | Open file under cursor in vertical split | n |
 | `zx` | Close quickfix list | n |
@@ -165,6 +172,11 @@ Using standard plugins: Telescope, Diffview, and Fugitive.
 | `<leader>gs` | Git status | n |
 | `<leader>gd` | Diffview: unstaged changes | n |
 | `<leader>gD` | Diffview: staged changes | n |
+| `<leader>gg` | Open lazygit at the current repository root | n |
+| `<leader>gm` | Toggle review mode and changed-files panel | n |
+| `<leader>gt` | Toggle review highlights | n |
+| `<leader>gT` | Review highlight settings | n |
+| `<leader>gi` | Preview current hunk inline | n |
 | `<leader>gh` | Diffview: file history | n |
 | `<leader>gH` | Diffview: repo history | n |
 | `<leader>gx` | Close diffview | n |
@@ -181,9 +193,56 @@ Using standard plugins: Telescope, Diffview, and Fugitive.
 | `<C-o>` | Open file in new tab | n |
 | `s` | Stage/unstage file | n |
 
-### Git Hunks (vim-gitgutter)
+### Git Hunks (gitsigns.nvim)
 
 | Key | Action | Mode |
 |-----|--------|------|
 | `]c` | Next git hunk | n |
 | `[c` | Previous git hunk | n |
+| `Ctrl+}` / `Ctrl+Shift+Ъ` | Next git hunk alias | n |
+| `Ctrl+{` / `Ctrl+Shift+Х` | Previous git hunk alias | n |
+| `<leader>gi` | Inline preview of current hunk | n |
+
+> TODO: Revisit the navigation scheme for Git hunks and quickfix items. Keep
+> `[c` / `]c` for hunks and `[q` / `]q` for quickfix as the likely native
+> direction. `Option+[` / `Option+]` cannot currently be hunk aliases because
+> they are already used for previous/next Harpoon files.
+
+`<leader>gm` enables review mode, turns on the configured highlights, and puts
+editable changed files into the standard quickfix list at the bottom.
+The existing `<C-]>` and `<C-[>` mappings run `:cnext` and `:cprev`, so the same
+navigation works for Git review, `grr` references, and every other command that
+fills quickfix. Disabling review mode closes the list and turns off its
+highlights.
+
+`<leader>gt` toggles highlights independently without closing review mode.
+`<leader>gT` configures line highlight, number highlight, word diff, deleted
+lines, and current-line blame. The default profile enables line highlight,
+word diff, and deleted lines. The profile is stored globally in Neovim's state
+directory as `git-highlights.json`; review mode itself always starts disabled.
+
+Telescope Git previews use Vim's diff highlighter for consistent added,
+removed, changed, file-header, and hunk-header colors.
+
+### AI Agents
+
+Codex is active by default for each Neovim session. Codex starts through the
+existing interactive zsh alias (`zsh -ic codex`); OpenCode starts directly.
+Both use Sidekick's file watcher and persistent Zellij sessions. Switching the
+panel between right and floating layouts does not stop the agent.
+
+| Key | Action | Mode |
+|-----|--------|------|
+| `Option+A` | Show, focus, or hide the active agent | n, t |
+| `Option+A` | Send file, selected line range, and selected code | x |
+| `<leader>aa` | Select Codex or OpenCode | n |
+| `<leader>as` | Switch AI panel between right and float | n |
+
+Ghostty must have `macos-option-as-alt = true`. The configuration maps both
+English `Option+A` and Russian `Option+Ф` input.
+
+## External file updates
+
+`autoread` and the Sidekick watcher are enabled. Debounced `checktime` runs on
+focus/window/buffer/terminal transitions and `CursorHold`; modified buffers are
+never reloaded. There is no global autosave.
