@@ -228,15 +228,14 @@ removed, changed, file-header, and hunk-header colors.
 
 Codex is active by default for each Neovim session. Codex starts through the
 existing interactive zsh alias (`zsh -ic codex`); OpenCode starts directly.
-Both use Sidekick's file watcher and persistent Zellij sessions. Switching the
-panel between right and floating layouts does not stop the agent.
+Both run directly in Sidekick's right-hand terminal and use its file watcher.
+Their processes remain active while Neovim is running.
 
 | Key | Action | Mode |
 |-----|--------|------|
 | `Option+A` | Show, focus, or hide the active agent | n, t |
 | `Option+A` | Send file, selected line range, and selected code | x |
 | `<leader>aa` | Select Codex or OpenCode | n |
-| `<leader>as` | Switch AI panel between right and float | n |
 
 Ghostty must have `macos-option-as-alt = true`. The configuration maps both
 English `Option+A` and Russian `Option+Ф` input.

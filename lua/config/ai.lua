@@ -1,6 +1,5 @@
 local M = {
     provider = 'codex',
-    layout = 'right',
 }
 
 local providers = {
@@ -12,24 +11,8 @@ local function cli()
     return require('sidekick.cli')
 end
 
-local function active_terminal()
-    local states = require('sidekick.cli.state').get({
-        attached = true,
-        name = M.provider,
-    })
-
-    return states[1] and states[1].terminal or nil
-end
-
 function M.toggle()
-    local terminal = active_terminal()
-
-    if terminal and terminal:is_focused() then
-        cli().hide({ name = M.provider })
-        return
-    end
-
-    cli().show({ name = M.provider, focus = true })
+    cli().toggle({ name = M.provider, focus = true })
 end
 
 function M.send_selection()
@@ -58,24 +41,6 @@ function M.select_provider()
     end)
 end
 
-function M.switch_layout()
-    M.layout = M.layout == 'right' and 'float' or 'right'
-    require('sidekick.config').cli.win.layout = M.layout
-
-    local terminal = active_terminal()
-    if terminal then
-        local was_open = terminal:is_open()
-        terminal:hide()
-        terminal.opts.layout = M.layout
-
-        if was_open then
-            terminal:show():focus()
-        end
-    end
-
-    vim.notify('AI layout: ' .. M.layout)
-end
-
 function M.setup()
     require('sidekick').setup({
         nes = { enabled = false },
@@ -89,12 +54,10 @@ function M.setup()
             watch = true,
             picker = 'telescope',
             win = {
-                layout = M.layout,
+                layout = 'right',
             },
             mux = {
-                backend = 'zellij',
-                enabled = true,
-                create = 'terminal',
+                enabled = false,
             },
             tools = {
                 codex = {
@@ -128,7 +91,6 @@ function M.setup()
     end
 
     vim.keymap.set('n', '<leader>aa', M.select_provider, { desc = 'Select AI provider' })
-    vim.keymap.set('n', '<leader>as', M.switch_layout, { desc = 'Switch AI panel layout' })
 end
 
 return M
