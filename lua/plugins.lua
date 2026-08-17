@@ -52,6 +52,76 @@ return {
                     position = "left",
                     mappings = {
                         ["<C-b>"] = "close_window",
+                        ["Y"] = {
+                            function(state)
+                                local Menu = require("nui.menu")
+                                local node = state.tree:get_node()
+                                local filepath = node:get_id()
+                                local filename = node.name
+                                local modify = vim.fn.fnamemodify
+
+                                local function copy_path(path)
+                                    vim.fn.setreg("+", path, "c")
+                                    local msg = "Copied: " .. path
+                                    local max = math.max(vim.o.columns - 1, 1)
+                                    if vim.fn.strdisplaywidth(msg) > max then
+                                        msg = vim.fn.strcharpart(msg, 0, max - 1) .. "…"
+                                    end
+                                    vim.api.nvim_echo({ { msg, "Directory" } }, false, {})
+                                end
+
+                                local choices = {
+                                    { key = "1", label = "Relative to CWD", value = modify(filepath, ":.") },
+                                    { key = "2", label = "Relative to HOME", value = modify(filepath, ":~") },
+                                    { key = "3", label = "Filename", value = filename },
+                                }
+
+                                local lines = {}
+                                local width = 24
+                                for i, choice in ipairs(choices) do
+                                    local text = string.format("%s  %s: %s", choice.key, choice.label, choice.value)
+                                    width = math.max(width, vim.fn.strdisplaywidth(text) + 2)
+                                    lines[i] = Menu.item(text, { value = choice.value })
+                                end
+
+                                local menu = Menu({
+                                    relative = "editor",
+                                    position = "50%",
+                                    size = {
+                                        width = math.min(width, vim.o.columns - 4),
+                                        height = #choices,
+                                    },
+                                    border = {
+                                        style = "rounded",
+                                        text = {
+                                            top = " Copy path ",
+                                            top_align = "center",
+                                        },
+                                    },
+                                }, {
+                                    lines = lines,
+                                    keymap = {
+                                        focus_next = { "j", "<Down>", "<Tab>" },
+                                        focus_prev = { "k", "<Up>", "<S-Tab>" },
+                                        close = { "<Esc>", "<C-c>", "q" },
+                                        submit = { "<CR>", "<Space>" },
+                                    },
+                                    on_submit = function(item)
+                                        copy_path(item.value)
+                                    end,
+                                })
+
+                                for _, choice in ipairs(choices) do
+                                    menu:map("n", choice.key, function()
+                                        menu:unmount()
+                                        copy_path(choice.value)
+                                    end, { noremap = true, nowait = true })
+                                end
+
+                                menu:mount()
+                            end,
+                            desc = "Copy path",
+                        },
                     },
                 },
                 buffers = {
